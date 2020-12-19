@@ -1,0 +1,49 @@
+<div class="form-group">
+        <label for="m_ma">Màu</label>
+        <select name="m_ma" class="form-control">
+            <?php 
+                $msp = DB::table('mau_sanpham')
+                ->join('mau', 'mau_sanpham.m_ma', '=', 'mau.m_ma')
+                ->where('sp_ma', $sp->sp_ma)
+                ->first();
+                ?>
+                
+                    @if(!empty($msp->m_ten))
+                    <option value="{{ $msp->m_ma }}" selected>{{ $msp->m_ten }}</option>
+                    @endif
+                    @foreach($danhsachmau as $mau)
+                    <option value="{{ $mau->m_ma }}">{{ $mau->m_ten }}</option>
+                    @endforeach
+                
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="sp_soLuong">Số lượng</label>
+            <?php 
+                $msp = DB::table('mau_sanpham')
+                ->join('mau', 'mau_sanpham.m_ma', '=', 'mau.m_ma')
+                ->where('sp_ma', $sp->sp_ma)
+                ->first();
+                ?>
+                @if(!empty($msp->msp_soluong))
+                <input type="number" class="form-control" id="sp_soLuong" name="sp_soLuong" value="{{ old('sp_soLuong', $msp->msp_soluong) }}">
+                @endif
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="cd_ma">Chủ đề</label>
+        <select name="cd_ma" class="form-control">
+            <?php 
+            $cdsp = DB::table('chude_sanpham')
+            ->join('chude', 'chude_sanpham.cd_ma', '=', 'chude.cd_ma')
+            ->where('sp_ma', $sp->sp_ma)
+            ->first();
+            ?>
+            @if(!empty($cdsp->cd_ten))
+                <option value="{{ $cdsp->cd_ma }}" selected>{{ $cdsp->cd_ten }}</option>
+            @endif
+            @foreach($danhsachchude as $cdsp)
+                <option value="{{ $cdsp->cd_ma }}">{{ $cdsp->cd_ten }}</option>
+            @endforeach
+        </select>
+    </div>
