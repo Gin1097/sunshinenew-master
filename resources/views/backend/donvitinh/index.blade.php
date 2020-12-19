@@ -33,12 +33,20 @@ Danh sách các loại đơn vị tính có trong Hệ thống. Bạn có thể 
             <td>{{ $donvitinh->dvt_ma }}</td>
             <td>{{ $donvitinh->dvt_ten }}</td>
             <td>
+                @if($donvitinh->dvt_trangThai == 2)
                 <a href="{{ route('backend.donvitinh.edit', ['id' => $donvitinh->dvt_ma]) }}" class="btn btn-success">Sửa</a>
                 <form class="d-inline" method="post" action="{{ route('backend.donvitinh.destroy', ['id' => $donvitinh->dvt_ma]) }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="DELETE" />
                     <button class="btn btn-danger">Xóa</button>
                 </form>
+                @else
+                <form class="d-inline" method="post" action="{{ route('backend.donvitinh.repose', ['id' => $donvitinh->dvt_ma]) }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_method" value="PUT" />
+                    <button class="btn btn-info">Đặt lại</button>
+                </form>
+                @endif
             </td>
         </tr>
         <?php

@@ -267,6 +267,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/admin/kho/edit/{id}', 'KhoController@edit')->name('backend.kho.edit');
     Route::put('/admin/kho/update/{id}', 'KhoController@update')->name('backend.kho.update');
     Route::delete('/admin/kho/delete/{id}', 'KhoController@destroy')->name('backend.kho.destroy');
+    Route::put('/admin/kho/repose/{id}', 'KhoController@repose')->name('backend.kho.repose');
 
     //Nhập kho
     Route::get('/admin/nhapkho', 'NhapKhoController@index')->name('backend.nhapkho.index');
@@ -283,6 +284,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/admin/donvitinh/edit/{id}', 'DonViTinhController@edit')->name('backend.donvitinh.edit');
     Route::put('/admin/donvitinh/update/{id}', 'DonViTinhController@update')->name('backend.donvitinh.update');
     Route::delete('/admin/donvitinh/delete/{id}', 'DonViTinhController@destroy')->name('backend.donvitinh.destroy');
+    Route::put('/admin/donvitinh/repose/{id}', 'DonViTinhController@repose')->name('backend.donvitinh.repose');
 
     //Sản phẩm kho
     Route::get('/admin/spk', 'SanPhamKhoController@index')->name('backend.spk.index');

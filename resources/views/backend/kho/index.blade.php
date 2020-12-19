@@ -39,12 +39,20 @@ Danh sách kho có trong Hệ thống. Bạn có thể CRUD!
             <td>{{ $kho->kho_sdt }}</td>
             <td>{{ $kho->kho_quanly }}</td>
             <td>
+                @if($kho->kho_trangThai == 2)
                 <a href="{{ route('backend.kho.edit', ['id' => $kho->kho_ma]) }}" class="btn btn-success">Sửa</a>
                 <form class="d-inline" method="post" action="{{ route('backend.kho.destroy', ['id' => $kho->kho_ma]) }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="DELETE" />
                     <button class="btn btn-danger">Xóa</button>
                 </form>
+                @else
+                <form class="d-inline" method="post" action="{{ route('backend.kho.repose', ['id' => $kho->kho_ma]) }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_method" value="PUT" />
+                    <button class="btn btn-info">Đặt lại</button>
+                </form>
+                @endif
             </td>
         </tr>
         <?php

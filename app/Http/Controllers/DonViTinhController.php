@@ -120,9 +120,21 @@ class DonViTinhController extends Controller
     {
         //
         $dvt = Donvitinh::find($id);
-        $dvt->delete();
+        $dvt->dvt_trangThai = 1;
+        $dvt->save();
 
         Session::flash('alert-danger', 'Xóa thành công ^^~!!!');
+        return redirect()->route('backend.donvitinh.index');
+    }
+
+    public function repose($id)
+    {
+        //
+        $dvt = Donvitinh::find($id);
+        $dvt->dvt_trangThai = 2;
+        $dvt->save();
+
+        Session::flash('alert-info', 'Đặt lại thành công ^^~!!!');
         return redirect()->route('backend.donvitinh.index');
     }
 }

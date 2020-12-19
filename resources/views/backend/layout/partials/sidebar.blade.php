@@ -439,7 +439,7 @@
                     <li class="nav-item">
                         <a class="nav-link {{ (strpos(Route::currentRouteName(), 'backend.khachhang.index') === 0) ? 'active' : '' }}" href="{{ route('backend.khachhang.index') }}/">
                             <span data-feather="list"></span>
-                            Danh sách
+                            Danh sách{edit}
                         </a>
                     </li>
                 </ul>

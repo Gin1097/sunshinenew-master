@@ -117,9 +117,21 @@ class KhoController extends Controller
     {
         //
         $kho = Kho::find($id);
-        $kho->delete();
+        $kho->kho_trangThai = 1;
+        $kho->save();
 
         Session::flash('alert-danger', 'Xóa thành công ^^~!!!');
+        return redirect()->route('backend.kho.index');
+    }
+
+    public function repose($id)
+    {
+        //
+        $kho = Kho::find($id);
+        $kho->kho_trangThai = 2;
+        $kho->save();
+
+        Session::flash('alert-info', 'Đặt lại thành công ^^~!!!');
         return redirect()->route('backend.kho.index');
     }
 }
