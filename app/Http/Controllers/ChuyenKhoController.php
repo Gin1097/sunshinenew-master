@@ -10,6 +10,7 @@ use App\Nhanvien;
 use App\Kho;
 use App\Sanphamkho;
 use App\ChitietChuyenkho;
+use Carbon\Carbon;
 use DB;
 use Session;
 use Validator;
@@ -39,10 +40,16 @@ class ChuyenKhoController extends Controller
     public function create()
     {
         //
-        $ds_nhanvien = Nhanvien::all();
+        $ds_nhanvien = DB::table('nhanvien')
+        ->select('nv_ma', 'nv_hoTen', 'nv_trangThai')
+        ->where('nv_trangThai', 2)
+        ->get();
         $ds_sp = Sanpham::all();
         $ds_spk = Sanphamkho::all();
-        $ds_kho = Kho::all();
+        $ds_kho = DB::table('kho')
+        ->select('kho_ma', 'kho_ten', 'kho_trangThai')
+        ->where('kho_trangThai', 2)
+        ->get(  );
         return view('backend.chuyenkho.create')
         // với dữ liệu truyền từ Controller qua View, được đặt tên là `danhsachloai`
         ->with('danhsachsanpham', $ds_sp)
@@ -61,7 +68,7 @@ class ChuyenKhoController extends Controller
     {
         //
         $ck = new Chuyenkho();
-        $ck->ck_ngay = date('Y-m-d');
+        $ck->ck_ngay = Carbon::now();
         $ck->ck_lydo = $request->ck_lydo;
         $ck->nv_ma = $request->nv_ma;
         $ck->save();
@@ -76,7 +83,7 @@ class ChuyenKhoController extends Controller
         $ctck->khocu_ma = $request->khocu_ma;
         $ctck->khomoi_ma = $request->kho_ma;
         $ctck->save();
-
+        
         $spk = new Sanphamkho();
         $spk->kho_ma = $request->kho_ma;
         $spk->sp_ma = $request->sp_ma;

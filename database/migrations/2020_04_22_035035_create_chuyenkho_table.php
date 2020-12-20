@@ -18,6 +18,7 @@ class CreateChuyenkhoTable extends Migration
             $table->unsignedTinyInteger('ck_ma')->autoIncrement()->comment('Mã chuyển kho');
             $table->datetime('ck_ngay')->comment('Ngày chuyển kho # Ngày chuyển kho');
             $table->string('ck_lydo', 200)->comment('Lý do chuyển kho');
+            $table->tinyInteger('ck_trangThai')->default('2')->comment('Trạng thái # Trạng thái phiếu chuyển sản phẩm: 1-khóa, 2-khả dụng');
             $table->unsignedSmallInteger('nv_ma')->comment('Mã nhân viên chuyển kho');
             $table->foreign('nv_ma')->references('nv_ma')->on('nhanvien')->onDelete('CASCADE')->onUpdate('CASCADE');
     });

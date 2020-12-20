@@ -288,11 +288,11 @@ Route::group(['middleware' => 'auth'], function()
 
     //Sản phẩm kho
     Route::get('/admin/spk', 'SanPhamKhoController@index')->name('backend.spk.index');
-    Route::get('/admin/spk/create', 'SanPhamKhoController@create')->name('backend.spk.create');
-    Route::post('/admin/spk/store', 'SanPhamKhoController@store')->name('backend.spk.store');
-    Route::get('/admin/spk/edit/{id}/{id1}', 'SanPhamKhoController@edit')->name('backend.spk.edit');
-    Route::put('/admin/spk/update/{id}/{id1}', 'SanPhamKhoController@update')->name('backend.spk.update');
-    Route::delete('/admin/spk/delete/{id}/{id1}', 'SanPhamKhoController@destroy')->name('backend.spk.destroy');
+    // Route::get('/admin/spk/create', 'SanPhamKhoController@create')->name('backend.spk.create');
+    // Route::post('/admin/spk/store', 'SanPhamKhoController@store')->name('backend.spk.store');
+    // Route::get('/admin/spk/edit/{id}/{id1}', 'SanPhamKhoController@edit')->name('backend.spk.edit');
+    // Route::put('/admin/spk/update/{id}/{id1}', 'SanPhamKhoController@update')->name('backend.spk.update');
+    // Route::delete('/admin/spk/delete/{id}/{id1}', 'SanPhamKhoController@destroy')->name('backend.spk.destroy');
     
     // Xuất kho
     Route::get('/admin/xuatkho', 'XuatKhoController@index')->name('backend.xuatkho.index');

@@ -31,10 +31,6 @@ Thêm mới phiếu chuyển kho. Vui lòng nhập thông tin và bấm Lưu.
         <label for="ck_lydo">Lý do</label>
         <input type="text" class="form-control" id="ck_lydo" name="ck_lydo" placeholder="Nhập lý do" value="{{ old('ck_lydo') }}">
     </div>
-    <div class="form-group">
-        <label for="ck_ngay">Ngày lập phiếu</label>
-        <input type="text" class="form-control" id="ck_ngay" name="ck_ngay" placeholder="Nhập ngày" value="{{ date('d-m-Y') }}">
-    </div>
     <hr />
     <div class="form-group">
         <label for="sp_ma">Sản phẩm</label>
@@ -65,9 +61,9 @@ Thêm mới phiếu chuyển kho. Vui lòng nhập thông tin và bấm Lưu.
         <select name="kho_ma" id="kho_ma" class="form-control">
             @foreach($danhsachkho as $kho)
                 @if(old('kho_ma') == $kho->kho_ma)
-                <option value="{{ $kho->kho_ma }}" selected>{{ $kho->kho_ma."-".$kho->kho_ten }}</option>
+                <option value="{{ $kho->kho_ma }}" selected>{{ $kho->kho_ma."_".$kho->kho_ten }}</option>
                 @else
-                <option value="{{ $kho->kho_ma }}">{{ $kho->kho_ma."-". $kho->kho_ten  }}</option>
+                <option value="{{ $kho->kho_ma }}">{{ $kho->kho_ma."_". $kho->kho_ten  }}</option>
                 @endif
             @endforeach
         </select>
@@ -122,7 +118,7 @@ Thêm mới phiếu chuyển kho. Vui lòng nhập thông tin và bấm Lưu.
     </div>
     <div class="form-group">
         <label for="ck_soluong">Số lượng chuyển</label>
-        <input type="text" class="form-control" id="ck_soluong" name="ck_soluong" placeholder="Nhập số lượng" value="{{ old('ck_soluong') }}">
+        <input type="text" class="form-control" id="ck_soluong" name="ck_soluong" placeholder="Nhập số lượng" value="{{ old('ck_soluong') }}" max="$str->sl_ton">
     </div>
     <button class="btn btn-primary">Lưu</button>
 </form>
@@ -149,116 +145,81 @@ Thêm mới phiếu chuyển kho. Vui lòng nhập thông tin và bấm Lưu.
                 $("#sl_nhap").html(data);
             });
         });
-        // $("#frmLoai").validate({
-        //     rules: {
-        //         nv_ma: {
-        //             required: true,
-        //         },
-        //         xk_lydo: {
-        //             required: true,
-        //             minlength: 3,
-        //             maxlength: 50,
-        //         },
-        //         xk_diachi: {
-        //             required: true,
-        //             minlength: 3,
-        //             maxlength: 50,
-        //         },
-        //         xk_ngaylap: {
-        //             required: true,
-        //         },
-        //         sp_ma: {
-        //             required: true,
-        //         },
-        //         kho_ma: {
-        //             required: true, 
-        //         },
-        //         sp_donvitinh: {
-        //             required: true,
-        //         },
-        //         sp_gianBan: {
-        //             required: true,
-        //         },
-        //         sl_ton: {
-        //             required: true,
-        //         },
-        //         sl_nhap: {
-        //             required: true,
-        //         },
-        //         xk_soluong: {
-        //             required: true,
-        //             maxlength: 10
-        //         },
-        //     },
-        //     messages: {
-        //         nv_ma: {
-        //             required: "Vui lòng chọn nhân viên",
-        //         },
-        //         xk_lydo: {
-        //             required: "Vui lòng nhập lý do xuất kho",
-        //             minlength: "Lý do phải có ít nhất 3 ký tự",
-        //             maxlength: "Lý do không được vượt quá 50 ký tự"
-        //         },
-        //         xk_diachi: {
-        //             required: "Vui lòng nhập địa chỉ xuất kho",
-        //             minlength: "Địa chỉ phải có ít nhất 3 ký tự",
-        //             maxlength: "Địa chỉ không được vượt quá 50 ký tự"
-        //         },
-        //         xk_ngaylap: {
-        //             required: "Vui lòng nhập ngày lập phiếu xuất kho",
-        //         },
-        //         sp_ma: {
-        //             required: "Vui lòng chọn sản phẩm",
-        //         },
-        //         kho_ma: {
-        //             required: "Kho không được để trống", 
-        //         },
-        //         sp_donvitinh: {
-        //             required: "Đơn vị tính không được để trống",
-        //         },
-        //         sp_gianBan: {
-        //             required: "Giá bán sản phẩm không được để trống",
-        //         },
-        //         sl_ton: {
-        //             required: "Số lượng còn lại trong kho không được để trống",
-        //         },
-        //         sl_nhap: {
-        //             required: "Số lượng lúc nhập vào của sản phẩm không được để trống",
-        //         },
-        //         xk_soluong: {
-        //             required: "Vui lòng nhập số lượng sản phẩm cần xuất kho",
-        //             maxlength: "Số lượng không được vượt quá 10 ký tự",
-        //         }
-        //     },
-        //     errorElement: "em",
-        //     errorPlacement: function (error, element) {
-        //         // Thêm class `invalid-feedback` cho field đang có lỗi
-        //         error.addClass("invalid-feedback");
-        //         if (element.prop("type") === "checkbox") {
-        //             error.insertAfter(element.parent("label"));
-        //         } else {
-        //             error.insertAfter(element);
-        //         }
-        //         // Thêm icon "Kiểm tra không Hợp lệ"
-        //         if (!element.next("span")[0]) {
-        //             $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>")
-        //                 .insertAfter(element);
-        //         }
-        //     },
-        //     success: function (label, element) {
-        //         // Thêm icon "Kiểm tra Hợp lệ"
-        //         if (!$(element).next("span")[0]) {
-        //             $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>")
-        //                 .insertAfter($(element));
-        //         }
-        //     },
-        //     highlight: function (element, errorClass, validClass) {
-        //         $(element).addClass("is-invalid").removeClass("is-valid");
-        //     },
-        //     unhighlight: function (element, errorClass, validClass) {
-        //         $(element).addClass("is-valid").removeClass("is-invalid");
-        //     }
-        // });
+        $("#frmLoai").validate({
+            rules: {
+                nv_ma: {
+                    required: true,
+                },
+                ck_lydo: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50,
+                },
+                
+               
+                sp_ma: {
+                    required: true,
+                },
+                kho_ma: {
+                    required: true, 
+                },
+             
+                ck_soluong: {
+                    required: true,
+                    maxlength: 10
+                },
+            },
+            messages: {
+                nv_ma: {
+                    required: "Vui lòng chọn nhân viên",
+                },
+                ck_lydo: {
+                    required: "Vui lòng nhập lý do xuất kho",
+                    minlength: "Lý do phải có ít nhất 3 ký tự",
+                    maxlength: "Lý do không được vượt quá 50 ký tự"
+                },
+                
+                sp_ma: {
+                    required: "Vui lòng chọn sản phẩm",
+                },
+                kho_ma: {
+                    required: "Kho không được để trống", 
+                },
+                
+                ck_soluong: {
+                    required: "Vui lòng nhập số lượng sản phẩm cần xuất kho",
+                    maxlength: "Số lượng không được vượt quá 10 ký tự",
+                }
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                // Thêm class `invalid-feedback` cho field đang có lỗi
+                error.addClass("invalid-feedback");
+                if (element.prop("type") === "checkbox") {
+                    error.insertAfter(element.parent("label"));
+                } else {
+                    error.insertAfter(element);
+                }
+                // Thêm icon "Kiểm tra không Hợp lệ"
+                if (!element.next("span")[0]) {
+                    $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>")
+                        .insertAfter(element);
+                }
+            },
+            success: function (label, element) {
+                // Thêm icon "Kiểm tra Hợp lệ"
+                if (!$(element).next("span")[0]) {
+                    $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>")
+                        .insertAfter($(element));
+                }
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass("is-invalid").removeClass("is-valid");
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).addClass("is-valid").removeClass("is-invalid");
+            }
+        });
         
     });
 </script>

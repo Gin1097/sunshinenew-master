@@ -22,6 +22,7 @@ class CreateXuatkhoTable extends Migration
             $table->decimal('xk_tongtien', 10,2);
             $table->timestamp('xk_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên xuất kho');
             $table->timestamp('xk_capNhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật xuất kho gần nhất');
+            $table->tinyInteger('xk_trangThai')->default('2')->comment('Trạng thái # Trạng thái phiếu xuất sản phẩm: 1-khóa, 2-khả dụng');
             $table->unsignedSmallInteger('nv_ma')->comment('Chương trình # nv_ma # Mã nhân viên');
 
             $table->foreign('nv_ma')->references('nv_ma')->on('nhanvien')->onDelete('CASCADE')->onUpdate('CASCADE');

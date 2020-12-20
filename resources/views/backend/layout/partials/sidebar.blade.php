@@ -536,12 +536,7 @@
                             Danh sách
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ (strpos(Route::currentRouteName(), 'backend.spk.create') === 0) ? 'active' : '' }}" href="{{ route('backend.spk.create') }}">
-                            <span data-feather="plus"></span>
-                            Thêm mới
-                        </a>
-                    </li>
+                    
                 </ul>
             </li>
             <!-- Menu sản phẩm kho - End -->

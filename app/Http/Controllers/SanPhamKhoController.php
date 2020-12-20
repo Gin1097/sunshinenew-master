@@ -22,7 +22,7 @@ class SanPhamKhoController extends Controller
     public function index()
     {
         //
-        $danhsachsanphamkho = Sanphamkho::paginate(5);
+        $danhsachsanphamkho = Sanphamkho::paginate(10);
 
         return view('backend.sanphamkho.index')
                 ->with('danhsachsanphamkho', $danhsachsanphamkho);
@@ -71,8 +71,14 @@ class SanPhamKhoController extends Controller
         //
         $spk = Sanphamkho::where("kho_ma", $id)
         ->where("sp_ma", $id1)->first();
-        $ds_sanpham = Sanpham::all();
-        $ds_kho = Kho::all();
+        $ds_sanpham = DB::table('sanpham')
+        ->select('sp_ma', 'sp_ten', 'sp_trangThai')
+        ->where('sp_trangThai', 2)
+        ->get();
+        $ds_kho = DB::table('kho')
+        ->select('kho_ma', 'kho_ten', 'kho_trangThai')
+        ->where('kho_trangThai', 2)
+        ->get();
 
         return view('backend.sanphamkho.edit')
             ->with('spk', $spk)
@@ -87,7 +93,7 @@ class SanPhamKhoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $id1)
+    public function update(Request $request, $id, $id2)
     {
         //
         DB::table('sanphamkho')->where('kho_ma', $id)
@@ -99,7 +105,13 @@ class SanPhamKhoController extends Controller
             'sl_xuat'=>$request->sl_xuat,
             'sl_ton'=>$request->sl_ton
         ]);
+        
 
+        if($request->sp_ma == $id && $request->kho_ma == $id2){
+           
+        }
+        if($request->sp_ma == $id && $request->kho_ma != $id2){
+        }
         Session::flash('alert-warning', 'Cập nhật thành công ^^~!!!');
         return redirect()->route('backend.spk.index');
     }

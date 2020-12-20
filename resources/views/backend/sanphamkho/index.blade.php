@@ -14,7 +14,6 @@ Danh sách các sản phẩm kho có trong Hệ thống. Bạn có thể CRUD!
 
 @section('content')
 <div class="form-controll">
-<a href="{{ route('backend.spk.create') }}" class="btn btn-primary">Thêm mới sản phẩm kho</a>
 </div>
 <table class="table table-striped table-bordered">
     <thead>
@@ -25,7 +24,6 @@ Danh sách các sản phẩm kho có trong Hệ thống. Bạn có thể CRUD!
             <th>Số lượng nhập</th> 
             <th>Số lượng xuất</th> 
             <th>Số lượng tồn</th> 
-            <th>Sửa</th>
         </tr>
     </thead>
     <tbody>
@@ -40,14 +38,6 @@ Danh sách các sản phẩm kho có trong Hệ thống. Bạn có thể CRUD!
             <td>{{ $spk->sl_nhap }}</td>            
             <td>{{ $spk->sl_xuat }}</td>            
             <td>{{ $spk->sl_ton }}</td>            
-            <td>
-                <a href="{{ route('backend.spk.edit', ['id' => $spk->kho_ma, 'id1' => $spk->sp_ma]) }}" class="btn btn-success">Sửa</a>
-                <form class="d-inline" method="post" action="{{ route('backend.spk.destroy', ['id' => $spk->kho_ma, 'id1' => $spk->sp_ma]) }}">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="_method" value="DELETE" />
-                    <button class="btn btn-danger">Xóa</button>
-                </form>
-            </td>
         </tr>
         <?php
         $stt++;

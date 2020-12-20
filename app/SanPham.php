@@ -28,4 +28,8 @@ class SanPham extends Model
     {
         return $this->hasMany('App\HinhAnh', 'sp_ma', 'sp_ma');
     }
+    public function kho()
+    {
+        return $this->belongsTo('App\Kho', 'kho_ma', 'kho_ma');
+    }
 }
