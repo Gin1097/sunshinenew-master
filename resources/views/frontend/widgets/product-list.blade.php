@@ -256,7 +256,7 @@
                             </a>
 
                             <span class="stext-105 cl3">
-                                {{ $sp->sp_giaBan }}
+                                {{ number_format($sp->sp_giaBan,0,".",",")  }}
                             </span>
                         </div>
                     </div>

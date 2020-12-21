@@ -53,7 +53,7 @@
                     </h4>
 
                     <span class="mtext-106 cl2">
-                        {{ $sp->sp_giaBan }}
+                        {{ number_format($sp->sp_giaBan,0,".",",") }}
                     </span>
 
                     <p class="stext-102 cl3 p-t-23">

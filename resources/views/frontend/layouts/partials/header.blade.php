@@ -5,7 +5,6 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                        <h9>{{ __('sunshine.welcome') }}</h9>
 
                 </div>
                 @if(Auth::check())
@@ -124,7 +123,6 @@
         <ul class="topbar-mobile">
             <li>
             <div class="left-top-bar">
-                        <h9>{{ __('sunshine.welcome') }}</h9>
 
                 </div>
                 @if(Auth::check())

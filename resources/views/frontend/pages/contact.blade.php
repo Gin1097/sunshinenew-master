@@ -26,7 +26,7 @@ Liên hệ Shop Hoa tươi - Sunshine
             <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
                 <form name="contactForm" ng-submit="submitContactForm()" novalidate>
                     <h4 class="mtext-105 cl2 txt-center p-b-30">
-                        Gởi lời nhắn cho công ty Sunshine
+                        Gửi lời nhắn cho shop
                     </h4>
 
                     <!-- Div Thông báo lỗi 
