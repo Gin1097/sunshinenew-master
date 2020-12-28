@@ -43,13 +43,21 @@ Danh sách các phiếu xuất kho có trong Hệ thống. Bạn có thể CRUD!
             <td>{{ $xuatkho->nhanvien->nv_hoTen }}</td>  
             <td>{{ $xuatkho->xk_tongtien }}</td>          
             <td>
+                @if($xuatkho->xk_trangThai == 2)
                 <a href="{{ route('backend.xuatkho.edit', ['id' => $xuatkho->xk_ma]) }}" class="btn btn-success">Sửa</a>
-                <a href="{{ route('backend.xuatkho.print', ['id' => $xuatkho->xk_ma]) }}" class="btn btn-warning">In</a>
+                <a href="{{ route('backend.xuatkho.print', ['id' => $xuatkho->xk_ma]) }}" class="btn btn-warning" target="_blank">In</a>
                 <form class="d-inline" method="post" action="{{ route('backend.xuatkho.destroy', ['id' => $xuatkho->xk_ma]) }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="DELETE" />
                     <button class="btn btn-danger">Xóa</button>
                 </form>
+                @else
+                <form class="d-inline" method="post" action="{{ route('backend.xuatkho.repose', ['id' => $xuatkho->xk_ma]) }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_method" value="PUT" />
+                    <button class="btn btn-info">Đặt lại</button>
+                </form>
+                @endif
             </td>
         </tr>
         <?php

@@ -163,9 +163,8 @@ class FrontendController extends Controller
         // dd($request);
         // Data gởi mail
         $dataMail = [];
-        try {
             // Tạo mới khách hàng
-            
+            $email_kh = 'quanb1510856@gmail.com';
             // Tạo mới đơn hàng
             $donhang = new Donhang();
             $donhang->kh_ma = 100;
@@ -200,20 +199,12 @@ class FrontendController extends Controller
             // dd($dataMail);
             Mail::to('quanb1510856@gmail.com')
                 ->send(new OrderMailer($dataMail));
-        } catch (ValidationException $e) {
+                return $dataMail;
             return response()->json(array(
-                'code'  => 500,
-                'message' => $e,
-                'redirectUrl' => route('frontend.home')
+                'code'  => 200,
+                'message' => 'Tạo đơn hàng thành công!',
+                'redirectUrl' => route('frontend.orderFinish')
             ));
-        } catch (\Exception $e) {
-            throw $e;
-        }
-        return response()->json(array(
-            'code'  => 200,
-            'message' => 'Tạo đơn hàng thành công!',
-            'redirectUrl' => route('frontend.orderFinish')
-        ));
     }
     /**
      * Action Hoàn tất Đặt hàng

@@ -42,7 +42,7 @@ Danh sách hóa đơn sỉ có trong Hệ thống. Bạn có thể CRUD!
             <td>
                 @if($hoadonsi->hds_trangThai == 2)
                 <a href="{{ route('backend.hoadonsi.edit', ['id' => $hoadonsi->hds_ma]) }}" class="btn btn-success">Sửa</a>
-                <a href="{{ route('backend.hoadonsi.print', ['id' => $hoadonsi->hds_ma]) }}" class="btn btn-warning">In hd</a>
+                <a href="{{ route('backend.hoadonsi.print', ['id' => $hoadonsi->hds_ma]) }}" class="btn btn-warning" target="_blank">In hd</a>
                 
                 <form class="d-inline" method="post" action="{{ route('backend.hoadonsi.destroy', ['id' => $hoadonsi->hds_ma]) }}">
                     {{ csrf_field() }}

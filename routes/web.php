@@ -134,6 +134,8 @@ Route::group(['middleware' => 'auth'], function()
     Route::put('/admin/phieunhap/update/{id}', 'PhieuNhapController@update')->name('backend.phieunhap.update');
     Route::delete('/admin/phieunhap/delete/{id}', 'PhieuNhapController@destroy')->name('backend.phieunhap.destroy');
     Route::put('/admin/phieunhap/repose/{id}', 'PhieuNhapController@repose')->name('backend.phieunhap.repose');
+    Route::get('/admin/phieunhap/print/{id}', 'PhieuNhapController@print')->name('backend.phieunhap.print');
+        
         //Ajax
         Route::get('/admin/phieunhapkho/{idSanpham}', 'AjaxController@getphieuNhapKho');
         Route::get('/admin/giaban/{idSanpham}', 'AjaxController@getSanpham');
@@ -301,6 +303,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/admin/xuatkho/edit/{id}', 'XuatKhoController@edit')->name('backend.xuatkho.edit');
     Route::put('/admin/xuatkho/update/{id}', 'XuatKhoController@update')->name('backend.xuatkho.update');
     Route::delete('/admin/xuatkho/delete/{id}', 'XuatKhoController@destroy')->name('backend.xuatkho.destroy');
+    Route::put('/admin/xuatkho/repose/{id}', 'XuatKhoController@repose')->name('backend.xuatkho.repose');
     Route::get('/admin/xuatkho/print/{id}', 'XuatKhoController@print')->name('backend.xuatkho.print');
         //Ajax
         Route::get('/admin/donvitinh/{idSanpham}', 'AjaxController@getDonvitinh');

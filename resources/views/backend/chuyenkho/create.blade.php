@@ -155,18 +155,14 @@ Thêm mới phiếu chuyển kho. Vui lòng nhập thông tin và bấm Lưu.
                     minlength: 3,
                     maxlength: 50,
                 },
-                
-               
                 sp_ma: {
                     required: true,
                 },
                 kho_ma: {
                     required: true, 
                 },
-             
                 ck_soluong: {
                     required: true,
-                    maxlength: 10
                 },
             },
             messages: {
@@ -188,7 +184,6 @@ Thêm mới phiếu chuyển kho. Vui lòng nhập thông tin và bấm Lưu.
                 
                 ck_soluong: {
                     required: "Vui lòng nhập số lượng sản phẩm cần xuất kho",
-                    maxlength: "Số lượng không được vượt quá 10 ký tự",
                 }
             },
             errorElement: "em",

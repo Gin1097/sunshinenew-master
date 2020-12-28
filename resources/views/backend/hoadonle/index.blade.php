@@ -44,7 +44,7 @@ Danh sách hóa đơn lẻ có trong Hệ thống. Bạn có thể CRUD!
             <td>{{ $hoadonle->dh_ma}}</td>
             <td>
                 <a href="{{ route('backend.hoadonle.edit', ['id' => $hoadonle->hdl_ma]) }}" class="btn btn-success">Sửa</a>
-                <a href="{{ route('backend.hoadonle.print', ['id' => $hoadonle->hdl_ma]) }}" class="btn btn-warning">In hd</a>                
+                <a href="{{ route('backend.hoadonle.print', ['id' => $hoadonle->hdl_ma]) }}" class="btn btn-warning" target="_blank">In hd</a>                
             </td>
         </tr>
         <?php

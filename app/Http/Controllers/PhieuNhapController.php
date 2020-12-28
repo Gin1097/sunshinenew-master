@@ -180,4 +180,11 @@ class PhieuNhapController extends Controller
         Session::flash('alert-info', 'Đặt lại thành công ^^~!!!');
         return redirect()->route('backend.phieunhap.index');
     }
+    public function print($id) {
+        $pn = Phieunhap::where("pn_ma", $id)->first();
+        $ctn = Chitietnhap::all();
+        return view('backend.phieunhap.print')
+            ->with('pn', $pn)
+            ->with('ctn', $ctn);
+    }
 }

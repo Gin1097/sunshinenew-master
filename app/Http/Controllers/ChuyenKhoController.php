@@ -64,7 +64,7 @@ class ChuyenKhoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChuyenKhoCreateRequest $request)
     {
         //
         $ck = new Chuyenkho();
@@ -83,14 +83,71 @@ class ChuyenKhoController extends Controller
         $ctck->khocu_ma = $request->khocu_ma;
         $ctck->khomoi_ma = $request->kho_ma;
         $ctck->save();
+
+        $soluong = $request->ck_soluong;
+        $ton = $request->sl_ton;
+        $id = $request->khocu_ma;
+        $id1 = $request->sp_ma;
+        if($soluong>$ton){
+
+            return redirect(route('backend.chuyenkho.create'))
+            ->withErrors('Số lượng cần chuyển không được lớn hơn số lượng hiện có')
+            ->withInput();
+        }
+        if($soluong == $ton){
+            
+
+            $spk = new Sanphamkho();
+            $spk->kho_ma = $request->kho_ma;
+            $spk->sp_ma = $request->sp_ma;
+            $spk->sl_nhap = $request->ck_soluong;
+            $spk->sl_xuat = 0;
+            $spk->sl_ton = $request->ck_soluong;
+            $spk->save();
+
+            DB::table('sanphamkho')->where('kho_ma', $id)
+            ->where('sp_ma', $id1)
+            ->update([
+                'kho_ma'=>$request->khocu_ma,
+                'sp_ma'=>$request->sp_ma,
+                'sl_nhap'=>$request->sl_nhap,
+                'sl_ton'=>$request->sl_ton - $request->ck_soluong ,
+                'sl_xuat'=>$request->sl_xuat + $request->ck_soluong
+                ]);
+            $sp = Sanpham::find($id1);
+            $sp->kho_ma = $request->kho_ma;
+            $sp->save();
+        }
+        if($soluong < $ton){
+            // $sp = Sanpham::find($id1);
+            // $sp->sp_ten = $sp->sp_ten;
+            // $sp->sp_giaGoc = $sp->sp_giaGoc;
+            // $sp->sp_giaBan = $sp->sp_giaBan;
+            // $sp->sp_hinh = $sp->sp_hinh;
+            // $sp->
+
+            // $spk = new Sanphamkho();
+            // $spk->kho_ma = $request->kho_ma;
+            // $spk->sp_ma = $request->sp_ma;
+            // $spk->sl_nhap = $request->ck_soluong;
+            // $spk->sl_xuat = 0;
+            // $spk->sl_ton = $request->ck_soluong;
+            // $spk->save();
+
+            // DB::table('sanphamkho')->where('kho_ma', $id)
+            // ->where('sp_ma', $id1)
+            // ->update([
+            //     'kho_ma'=>$request->khocu_ma,
+            //     'sp_ma'=>$request->sp_ma,
+            //     'sl_nhap'=>$request->sl_nhap,
+            //     'sl_ton'=>$request->sl_ton - $request->ck_soluong ,
+            //     'sl_xuat'=>$request->sl_xuat
+            // ]);
+            return redirect(route('backend.chuyenkho.create'))
+            ->withErrors('Vui lòng chuyển hết sản phẩm hiện có trong kho')
+            ->withInput();
+        }
         
-        $spk = new Sanphamkho();
-        $spk->kho_ma = $request->kho_ma;
-        $spk->sp_ma = $request->sp_ma;
-        $spk->sl_nhap = $request->sl_nhap;
-        $spk->sl_xuat = $request->sl_xuat;
-        $spk->sl_ton = $request->sl_ton - $request->ck_soluong;
-        $spk->save();
 
         Session::flash('alert-success', 'Thêm mới thành công ^^~!!!');
         return redirect()->route('backend.chuyenkho.index');

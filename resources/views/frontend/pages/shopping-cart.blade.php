@@ -3,7 +3,7 @@
 
 {{-- Thay thế nội dung vào Placeholder `title` của view `frontend.layouts.master` --}}
 @section('title')
-Giỏ hàng Shop Hoa tươi - Sunshine
+Giỏ hàng Shop Hoa tươi - F-Shop
 @endsection
 
 {{-- Thay thế nội dung vào Placeholder `custom-css` của view `frontend.layouts.master` --}}
@@ -22,7 +22,7 @@ Giỏ hàng Shop Hoa tươi - Sunshine
         <div class="row">
             
 
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-12 col-md-12">
                 <h2>Thông tin Đặt hàng</h2>
                 <!-- Div Thông báo lỗi 
                 Chỉ hiển thị khi các validate trong form `orderForm` không hợp lệ => orderForm.$invalid = true
@@ -124,7 +124,6 @@ Giỏ hàng Shop Hoa tươi - Sunshine
 
         // hàm submit form sau khi đã kiểm tra các ràng buộc (validate)
         $scope.submitOrderForm = function() {
-            debugger;
             // kiểm tra các ràng buộc là hợp lệ, gởi AJAX đến action 
             if ($scope.orderForm.$valid) {
                 // lấy data của Form

@@ -42,6 +42,7 @@ Danh sách các phiếu nhập có trong Hệ thống. Bạn có thể CRUD!
             <td>
                 @if($phieunhap->pn_trangThai == 2)
                 <a href="{{ route('backend.phieunhap.edit', ['id' => $phieunhap->pn_ma]) }}" class="btn btn-success">Sửa</a>
+                <a href="{{ route('backend.phieunhap.print', ['id' => $phieunhap->pn_ma]) }}" class="btn btn-warning" target="blank">In</a>
                 <form class="d-inline" method="post" action="{{ route('backend.phieunhap.destroy', ['id' => $phieunhap->pn_ma]) }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="DELETE" />

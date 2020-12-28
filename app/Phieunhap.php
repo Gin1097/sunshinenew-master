@@ -21,4 +21,16 @@ class Phieunhap extends Model {
     {
         return $this->belongsTo('App\Nhacungcap', 'ncc_ma', 'ncc_ma');
     }
+    public function nhanvienlapphieu()
+    {
+        return $this->belongsTo('App\Nhanvien', 'nv_nguoiLapPhieu', 'nv_ma');
+    }
+    public function nhanvienketoan()
+    {
+        return $this->belongsTo('App\Nhanvien', 'nv_keToan', 'nv_ma');
+    }
+    public function nhanvienthukho()
+    {
+        return $this->belongsTo('App\Nhanvien', 'nv_thuKho', 'nv_ma');
+    }
 }

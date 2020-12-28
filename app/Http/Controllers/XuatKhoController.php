@@ -155,11 +155,25 @@ class XuatKhoController extends Controller
     {
         //
         $xk = Xuatkho::find($id);
-        $xk->delete();
+        $xk->xk_trangThai = 1;
+        $xk->save();
 
         Session::flash('alert-danger', 'Xóa thành công ^^~!!!');
         return redirect()->route('backend.xuatkho.index');
     }
+
+    public function repose($id)
+    {
+        //
+        $xk = Xuatkho::find($id);
+        $xk->xk_trangThai = 2;
+        $xk->save();
+
+        Session::flash('alert-info', 'Đặt lại thành công ^^~!!!');
+        return redirect()->route('backend.xuatkho.index');
+    }
+
+
     public function print($id){
         $xk = Xuatkho::where("xk_ma", $id)->first();
         $ctxk = ChitietXuatkho::all();
