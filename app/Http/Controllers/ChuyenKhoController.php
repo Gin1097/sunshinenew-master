@@ -67,22 +67,7 @@ class ChuyenKhoController extends Controller
     public function store(ChuyenKhoCreateRequest $request)
     {
         //
-        $ck = new Chuyenkho();
-        $ck->ck_ngay = Carbon::now();
-        $ck->ck_lydo = $request->ck_lydo;
-        $ck->nv_ma = $request->nv_ma;
-        $ck->save();
-
-        $ctck = new ChitietChuyenkho();
-        $sl = $request->ck_soluong;
-        $dg = $request->sp_giaGoc;
-        $ctck->ck_ma = $ck->ck_ma;
-        $ctck->sp_ma = $request->sp_ma;
-        $ctck->ctck_soluong = $request->ck_soluong;
-        $ctck->ctck_thanhtien = $sl*$dg;
-        $ctck->khocu_ma = $request->khocu_ma;
-        $ctck->khomoi_ma = $request->kho_ma;
-        $ctck->save();
+        
 
         $soluong = $request->ck_soluong;
         $ton = $request->sl_ton;
@@ -95,7 +80,22 @@ class ChuyenKhoController extends Controller
             ->withInput();
         }
         if($soluong == $ton){
-            
+            $ck = new Chuyenkho();
+            $ck->ck_ngay = Carbon::now();
+            $ck->ck_lydo = $request->ck_lydo;
+            $ck->nv_ma = $request->nv_ma;
+            $ck->save();
+
+            $ctck = new ChitietChuyenkho();
+            $sl = $request->ck_soluong;
+            $dg = $request->sp_giaGoc;
+            $ctck->ck_ma = $ck->ck_ma;
+            $ctck->sp_ma = $request->sp_ma;
+            $ctck->ctck_soluong = $request->ck_soluong;
+            $ctck->ctck_thanhtien = $sl*$dg;
+            $ctck->khocu_ma = $request->khocu_ma;
+            $ctck->khomoi_ma = $request->kho_ma;
+            $ctck->save();
 
             $spk = new Sanphamkho();
             $spk->kho_ma = $request->kho_ma;
@@ -211,11 +211,25 @@ class ChuyenKhoController extends Controller
     {
         //
         $ck = Chuyenkho::find($id);
-        $ck->delete();
+        $ck->ck_trangThai = 1;
+        $ck->save();
 
         Session::flash('alert-danger', 'Xóa thành công ^^~!!!');
         return redirect()->route('backend.chuyenkho.index');
     }
+
+    public function repose($id)
+    {
+        //
+        $ck = Chuyenkho::find($id);
+        $ck->ck_trangThai = 2;
+        $ck->save();
+
+        Session::flash('alert-info', 'Đặt lại thành công ^^~!!!');
+        return redirect()->route('backend.chuyenkho.index');
+    }
+
+    
     public function print($id) {
         $ck = Chuyenkho::where("ck_ma", $id)->first();
         $ctck = ChitietChuyenkho::all();

@@ -35,10 +35,6 @@ Thêm mới phiếu xuất kho. Vui lòng nhập thông tin và bấm Lưu.
         <label for="xk_diachi">Địa chỉ</label>
         <input type="text" class="form-control" id="xk_diachi" name="xk_diachi" placeholder="Nhập địa chỉ" value="{{ old('xk_diachi') }}">
     </div>
-    <div class="form-group">
-        <label for="xk_ngaylap">Ngày lập phiếu</label>
-        <input type="text" class="form-control" id="xk_ngaylap" name="xk_ngaylap" placeholder="Nhập ngày" value="{{ date('d-m-Y') }}">
-    </div>
     <hr />
     <div class="form-group">
         <label for="sp_ma">Sản phẩm</label>
@@ -125,7 +121,7 @@ Thêm mới phiếu xuất kho. Vui lòng nhập thông tin và bấm Lưu.
     $(document).ready(function () {
         $("#sp_ma").change(function(){
             var idSanpham = $(this).val();
-            $.get("/admin/sanpham/"+idSanpham,function(data){
+            $.get("/admin/giaban/"+idSanpham,function(data){
                 $("#sp_giaBan").html(data);
             });
             $.get("/admin/kho/"+idSanpham, function(data){

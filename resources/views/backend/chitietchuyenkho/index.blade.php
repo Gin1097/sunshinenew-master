@@ -41,11 +41,6 @@ Danh sách các chi tiết phiếu chuyển kho có trong Hệ thống. Bạn c�
             <td>{{ $ctck->khomoi->kho_ten }}</td>
             <td>
                 <a href="{{ route('backend.ctck.edit', ['id' => $ctck->ck_ma, 'id1' => $ctck->sp_ma]) }}" class="btn btn-success">Sửa</a>
-                <form class="d-inline" method="post" action="{{ route('backend.ctck.destroy', ['id' => $ctck->ck_ma, 'id1' => $ctck->sp_ma]) }}">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="_method" value="DELETE" />
-                    <button class="btn btn-danger">Xóa</button>
-                </form>
             </td>
         </tr>
         <?php

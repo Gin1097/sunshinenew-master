@@ -40,11 +40,19 @@ class XuatKhoController extends Controller
     public function create()
     {
         //
-        $ds_nhanvien = Nhanvien::all();
-        $ds_sp = Sanpham::all();
-        $ds_dvt = Donvitinh::all();
+        $ds_nhanvien = Nhanvien::select('nv_ma', 'nv_hoTen', 'nv_trangThai')
+        ->where('nv_trangThai', 2)
+        ->get();
+        $ds_sp = Sanpham::select('sp_ma', 'sp_ten', 'sp_trangThai')
+        ->where('sp_trangThai', 2)
+        ->get();
+        $ds_dvt = Donvitinh::select('dvt_ma', 'dvt_ten', 'dvt_trangThai')
+        ->where('dvt_trangThai', 2)
+        ->get();
         $ds_spk = Sanphamkho::all();
-        $ds_kho = Kho::all();
+        $ds_kho = Kho::select('kho_ma', 'kho_ten', 'kho_trangThai')
+        ->where('kho_trangThai', 2)
+        ->get();
         return view('backend.xuatkho.create')
         // với dữ liệu truyền từ Controller qua View, được đặt tên là `danhsachloai`
         ->with('danhsachsanpham', $ds_sp)
@@ -63,33 +71,44 @@ class XuatKhoController extends Controller
     public function store(Request $request)
     {
         //
-        $xk = new Xuatkho();
-        $gb = $request->sp_giaBan;
         $sl = $request->xk_soluong;
-        $xk->xk_ngaylap = date('Y-m-d');
-        $xk->xk_diachi = $request->xk_diachi;
-        $xk->xk_lydo = $request->xk_lydo;
-        $xk->xk_tongtien = $gb*$sl;
-        $xk->nv_ma = $request->nv_ma;
-        $xk->save();
+        $sln = $request->sl_nhap;
+        
+        $gb = $request->sp_giaBan;
+        if($sl>0 && $sl<=$sln){
 
-        $ctxk = new ChitietXuatkho();
-        $ctxk->sp_ma = $request->sp_ma;
-        $ctxk->xk_ma = $xk->xk_ma;
-        $ctxk->ctxk_soluong = $request->xk_soluong;
-        $ctxk->save();
+            $xk = new Xuatkho();
+            $xk->xk_ngaylap = date('Y-m-d');
+            $xk->xk_diachi = $request->xk_diachi;
+            $xk->xk_lydo = $request->xk_lydo;
+            $xk->xk_tongtien = $gb*$sl;
+            $xk->nv_ma = $request->nv_ma;
+            $xk->save();
+            $id = $request->kho_ma;
+            $id1 = $request->sp_ma;
+            DB::table('sanphamkho')->where('kho_ma', $id)
+            ->where('sp_ma', $id1)
+            ->update([
+                'kho_ma'=>$request->kho_ma,
+                'sp_ma'=>$request->sp_ma,
+                'sl_nhap'=>$request->sl_nhap,
+                'sl_ton'=>$request->sl_ton - $request->xk_soluong ,
+                'sl_xuat'=>$request->xk_soluong
+            ]);
 
-        $kho = $request->kho_ma;
-        $sp = $request->sp_ma;
-        DB::table('sanphamkho')->where('kho_ma', $kho)
-        ->where('sp_ma', $sp)
-        ->update([
-            'kho_ma'=>$request->kho_ma,
-            'sp_ma'=>$request->sp_ma,
-            'sl_nhap'=>$request->sl_nhap,
-            'sl_xuat'=>$request->xk_soluong,
-            'sl_ton'=>$request->sl_ton - $request->xk_soluong
-        ]);
+            $ctxk = new ChitietXuatkho();
+            $ctxk->sp_ma = $request->sp_ma;
+            $ctxk->xk_ma = $xk->xk_ma;
+            $ctxk->ctxk_soluong = $request->xk_soluong;
+            $ctxk->save();
+
+            
+        }else{
+            return redirect(route('backend.xuatkho.create'))
+            ->withErrors('Số lượng xuất phải lớn hơn 0 và nhỏ hơn số lượng hiện có')
+            ->withInput();
+        }
+        
 
         Session::flash('alert-success', 'Thêm mới thành công ^^~!!!');
         return redirect()->route('backend.xuatkho.index');

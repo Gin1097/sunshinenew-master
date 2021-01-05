@@ -308,7 +308,7 @@ Route::group(['middleware' => 'auth'], function()
         //Ajax
         Route::get('/admin/donvitinh/{idSanpham}', 'AjaxController@getDonvitinh');
         Route::get('/admin/kho/{idSanpham}', 'AjaxController@getKho');
-        Route::get('/admin/sanpham/{idSanpham}', 'AjaxController@getgiaBan');
+        Route::get('/admin/giaban/{idSanpham}', 'AjaxController@getgiaBan');
         Route::get('/admin/sanphamkho/{idSanpham}', 'AjaxController@getSanphamkho');
         Route::get('/admin/sanphamkho1/{idSanpham}', 'AjaxController@getSanphamkho1');
 
@@ -326,6 +326,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('/admin/chuyenkho/store', 'ChuyenKhoController@store')->name('backend.chuyenkho.store');
     Route::get('/admin/chuyenkho/edit/{id}', 'ChuyenKhoController@edit')->name('backend.chuyenkho.edit');
     Route::put('/admin/chuyenkho/update/{id}', 'ChuyenKhoController@update')->name('backend.chuyenkho.update');
+    Route::put('/admin/chuyenkho/repose/{id}', 'ChuyenKhoController@repose')->name('backend.chuyenkho.repose');
     Route::delete('/admin/chuyenkho/delete/{id}', 'ChuyenKhoController@destroy')->name('backend.chuyenkho.destroy');
     Route::get('/admin/chuyenkho/print/{id}', 'ChuyenKhoController@print')->name('backend.chuyenkho.print');
 

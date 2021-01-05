@@ -39,7 +39,7 @@ class ChuyenKhoCreateRequest extends FormRequest
         'nv_ma.required' => 'Nhân viên bắt buộc nhập',
         //Ly do
         'ck_lydo.required' => "Vui lòng nhập lý do",
-        'ck_lydo.min' => 'Ly do ít nhất 3 ký tự',
+        'ck_lydo.min' => 'Lý do ít nhất 3 ký tự',
         'ck_lydo.max' => 'Lý do không được quá 50 ký tự',
         //san pham
         'sp_ma.required' => 'Chọn Chọn sản phẩm',

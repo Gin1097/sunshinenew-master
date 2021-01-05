@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('reset-password', 'Auth\ResetPasswordController@sendMail');
+Route::put('reset-password/{token}', 'Auth\ResetPasswordController@reset');

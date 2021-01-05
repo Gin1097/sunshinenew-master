@@ -38,6 +38,7 @@ Danh sách các phiếu chuyển kho có trong Hệ thống. Bạn có thể CRU
             <td>{{ $chuyenkho->ck_ngay }}</td>            
             <td>{{ $chuyenkho->nhanvien->nv_hoTen }}</td>  
             <td>
+                @if($chuyenkho->ck_trangThai == 2)
                 <a href="{{ route('backend.chuyenkho.edit', ['id' => $chuyenkho->ck_ma]) }}" class="btn btn-success">Sửa</a>
                 <a href="{{ route('backend.chuyenkho.print', ['id' => $chuyenkho->ck_ma]) }}" class="btn btn-warning">In</a>
                 <form class="d-inline" method="post" action="{{ route('backend.chuyenkho.destroy', ['id' => $chuyenkho->ck_ma]) }}">
@@ -45,6 +46,13 @@ Danh sách các phiếu chuyển kho có trong Hệ thống. Bạn có thể CRU
                     <input type="hidden" name="_method" value="DELETE" />
                     <button class="btn btn-danger">Xóa</button>
                 </form>
+                @else
+                <form class="d-inline" method="post" action="{{ route('backend.chuyenkho.repose', ['id' => $chuyenkho->ck_ma]) }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_method" value="PUT" />
+                    <button class="btn btn-info">Đặt lại</button>
+                </form>
+                @endif
             </td>
         </tr>
         <?php

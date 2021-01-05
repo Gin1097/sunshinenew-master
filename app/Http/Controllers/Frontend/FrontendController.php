@@ -31,9 +31,10 @@ class FrontendController extends Controller
         $ds_top3_newest_loaisanpham = 
             DB::table('loai')
             ->join('sanpham', 'loai.l_ma', '=', 'sanpham.l_ma')
+            ->where('sp_trangThai', 2)
             ->orderBy('l_capNhat', 'DESC')
             ->orderBy('sp_capNhat', 'DESC')
-            ->take(3)
+            ->take(4)
             ->get();
 
         // Query tìm danh sách sản phẩm
