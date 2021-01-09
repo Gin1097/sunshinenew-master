@@ -272,5 +272,27 @@
         <div class="flex-c-m flex-w w-full p-t-45">
             {{ $data->links() }}
         </div>
+        <div class="flex-c-m flex-w w-full p-t-45">
+            <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                Load More
+            </a>
+        </div>
+        <script type="text/javascript">
+        $('ul.pagination').hide();
+        $(function(){
+            $('.row isotope-grid').jscroll({
+                autoTrigger: true,
+                loadingHtml: '<a class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">Load More</a>',
+                padding: 0,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.infinite-scroll',
+                callback: function() {
+                    // xóa thanh phân trang ra khỏi html mỗi khi load xong nội dung
+                    $('ul.pagination').remove();
+                }
+            });
+        });
+        }
+        </script>
     </div>
 </div>

@@ -9,13 +9,6 @@ use App\Sanphamkho;
 class AjaxController extends Controller
 {
     //
-    public function getgiaBan($idSanpham){
-        $ds_sp = Sanpham::where('sp_ma', $idSanpham)->get();
-        foreach($ds_sp as $data)
-        {
-            echo "<option value='".$data->sp_giaBan."'>".$data->sp_giaBan."</option>";
-        }
-    }
     public function getSanpham($idSanpham){
         $danhsachsanpham = Sanpham::where('sp_ma', $idSanpham)->get();
         foreach($danhsachsanpham as $str)
@@ -23,6 +16,14 @@ class AjaxController extends Controller
             echo "<option value='".$str->sp_giaGoc."'>".$str->sp_giaGoc."</option>";
         }
     }
+    public function getgiaBan($idSanpham){
+        $ds_sp = Sanpham::where('sp_ma', $idSanpham)->get();
+        foreach($ds_sp as $data)
+        {
+            echo "<option value='".$data->sp_giaBan."'>".$data->sp_giaBan."</option>";
+        }
+    }
+    
     public function getKho($idSanpham){
         $danhsachsanpham = Sanpham::where('sp_ma', $idSanpham)->get();
         foreach($danhsachsanpham as $str)

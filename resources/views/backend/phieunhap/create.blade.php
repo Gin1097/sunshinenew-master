@@ -15,6 +15,7 @@ Thêm mới phiếu nhập. Vui lòng nhập thông tin và bấm Lưu.
 @section('content')
 <form id="frmLoai" name="frmLoai" method="post" action="{{ route('backend.phieunhap.store') }}">
     {{ csrf_field() }}
+        <input type="hidden"  id="nv_keToan" name="nv_keToan"  value="{{ Auth::user()->nv_ma}}">
     <div class="form-group">
         <label for="pn_nguoiGiao">Người giao</label>
         <input type="text" class="form-control" id="pn_nguoiGiao" name="pn_nguoiGiao" placeholder="Nhập tên người giao" value="{{ old('pn_nguoiGiao') }}">
@@ -22,54 +23,10 @@ Thêm mới phiếu nhập. Vui lòng nhập thông tin và bấm Lưu.
     <div class="form-group">
         <label for="pn_soHoaDon">Số Hóa đơn</label>
         <input type="text" class="form-control" id="pn_soHoaDon" name="pn_soHoaDon" placeholder="Nhập số hóa đơn" value="{{ old('pn_soHoaDon') }}">
-    </div>
-    <div class="form-group">
-        <label for="pn_ngayXuatHoaDon">Ngày Xuất hóa đơn</label>
-        <input type="text" class="form-control" id="pn_ngayXuatHoaDon" name="pn_ngayXuatHoaDon" placeholder="Ngày xuất hóa đơn" value="{{ old('pn_ngayXuatHoaDon') }}">
-    </div>
+</div>
     <div class="form-group">
         <label for="pn_ghiChu">Ghi chú</label>
         <input type="text" class="form-control" id="pn_ghiChu" name="pn_ghiChu" placeholder="Ghi chú" value="{{ old('pn_ghiChu') }}">
-    </div>
-    <div class="form-group">
-        <label for="nv_nguoiLapPhieu">Người lập phiếu</label>
-        <select name="nv_nguoiLapPhieu" class="form-control">
-            @foreach($danhsachnhanvien as $lapphieu)
-                @if(old('nv_nguoiLapPhieu') == $lapphieu->nv_ma)
-                <option value="{{ $lapphieu->nv_ma }}" selected>{{ $lapphieu->nv_hoTen }}</option>
-                @else
-                <option value="{{ $lapphieu->nv_ma }}">{{ $lapphieu->nv_hoTen }}</option>
-                @endif
-            @endforeach
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="pn_ngayLapPhieu">Ngày lập phiếu</label>
-        <input type="text" class="form-control" id="pn_ngayLapPhieu" name="pn_ngayLapPhieu" placeholder="Ngày lập phiếu" value="{{ old('pn_ngayLapPhieu') }}">
-    </div>
-    <div class="form-group">
-        <label for="nv_keToan">Nhân viên kế toán</label>
-        <select name="nv_keToan" class="form-control">
-            @foreach($danhsachnhanvien as $ketoan)
-                @if(old('nv_keToan') == $ketoan->nv_ma)
-                <option value="{{ $ketoan->nv_ma }}" selected>{{ $ketoan->nv_hoTen }}</option>
-                @else
-                <option value="{{ $ketoan->nv_ma }}">{{ $ketoan->nv_hoTen }}</option>
-                @endif
-            @endforeach
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="nv_thuKho">Nhân viên thủ kho</label>
-        <select name="nv_thuKho" class="form-control">
-            @foreach($danhsachnhanvien as $thukho)
-                @if(old('nv_thuKho') == $thukho->nv_ma)
-                <option value="{{ $thukho->nv_ma }}" selected>{{ $thukho->nv_hoTen }}</option>
-                @else
-                <option value="{{ $thukho->nv_ma }}">{{ $thukho->nv_hoTen }}</option>
-                @endif
-            @endforeach
-        </select>
     </div>
     <div class="form-group">
         <label for="ncc_ma">Nhà cung cấp</label>
@@ -152,7 +109,7 @@ Thêm mới phiếu nhập. Vui lòng nhập thông tin và bấm Lưu.
     $(document).ready(function () {
         $("#sp_ma").change(function(){
             var idSanpham = $(this).val();
-            $.get("/admin/giaban/"+idSanpham,function(data){
+            $.get("/admin/giagoc/"+idSanpham,function(data){
                 $("#sp_giaGoc").html(data);
             });
             $.get("/admin/phieunhapkho/"+idSanpham, function(data){

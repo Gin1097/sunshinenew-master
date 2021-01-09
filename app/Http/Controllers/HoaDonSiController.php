@@ -11,6 +11,7 @@ use App\Thanhtoan;
 use App\Chitietdonhang;
 use App\Sanpham;
 use DB;
+use Auth;
 use Session;
 use Validator;
 use App\Http\Requests\MauCreateRequest;
@@ -157,6 +158,16 @@ class HoaDonSiController extends Controller
         //
         $hoadonsi = Hoadonsi::find($id);
         $hoadonsi->hds_trangThai = 2;
+        $hoadonsi->save();
+
+        Session::flash('alert-info', 'Đặt lại thành công ^^~!!!');
+        return redirect()->route('backend.hoadonsi.index');
+    }
+    public function confirm($id)
+    {
+        //
+        $hoadonsi = Hoadonsi::find($id);
+        $hoadonsi->nv_thuTruong = Auth::user()->nv_ma;
         $hoadonsi->save();
 
         Session::flash('alert-info', 'Đặt lại thành công ^^~!!!');

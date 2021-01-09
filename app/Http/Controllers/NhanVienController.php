@@ -21,6 +21,7 @@ class NhanVienController extends Controller
     public function index()
     {
         //
+        
         $ds_nhanvien = Nhanvien::paginate(5);
         return view('backend.nhanvien.index')
             ->with('danhsachnhanvien', $ds_nhanvien);

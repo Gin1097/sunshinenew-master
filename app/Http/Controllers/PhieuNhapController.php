@@ -13,6 +13,7 @@ use App\Sanphamkho;
 use App\Mau;
 use Session;
 use Storage;
+use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class PhieuNhapController extends Controller
@@ -39,16 +40,15 @@ class PhieuNhapController extends Controller
     public function create()
     {
         //
-        $ds_nhanvien = Nhanvien::all();
-        $ds_ncc = Nhacungcap::all();
-        $ds_sp = Sanpham::all();
-        $ds_mau = Mau::all();
+        
+        $ds_ncc = Nhacungcap::where('ncc_trangThai', 2)->get();
+        $ds_sp = Sanpham::where('sp_trangThai', 2)->get();
+        $ds_mau = Mau::where('m_trangThai', 2)->get();
         return view('backend.phieunhap.create')
         // với dữ liệu truyền từ Controller qua View, được đặt tên là `danhsachloai`
         ->with('danhsachnhacungcap', $ds_ncc)
         ->with('danhsachsanpham', $ds_sp)
-        ->with('danhsachmau', $ds_mau)
-        ->with('danhsachnhanvien', $ds_nhanvien);
+        ->with('danhsachmau', $ds_mau);
     }
 
     /**
@@ -63,12 +63,11 @@ class PhieuNhapController extends Controller
         $pn = new Phieunhap();
         $pn->pn_nguoiGiao = $request->pn_nguoiGiao;
         $pn->pn_soHoaDon = $request->pn_soHoaDon;
-        $pn->pn_ngayXuatHoaDon = $request->pn_ngayXuatHoaDon;
         $pn->pn_ghiChu = $request->pn_ghiChu;
-        $pn->nv_nguoiLapPhieu = $request->nv_nguoiLapPhieu;
-        $pn->pn_ngayLapPhieu = $request->pn_ngayLapPhieu;
-        $pn->nv_keToan = $request->nv_keToan;
-        $pn->nv_thuKho = $request->nv_thuKho;
+        $pn->nv_nguoiLapPhieu = 1;  //Mặc định là 1
+        $pn->pn_ngayLapPhieu = Carbon::now(); //Ngày hiện tại
+        $pn->nv_keToan = $request->nv_keToan;     
+        $pn->nv_thuKho = 1;     //Mặc định là 1
         $pn->ncc_ma = $request->ncc_ma;
         $pn->pn_trangThai = $request->pn_trangThai;
         $pn->save();

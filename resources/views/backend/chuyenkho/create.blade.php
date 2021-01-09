@@ -15,18 +15,7 @@ Thêm mới phiếu chuyển kho. Vui lòng nhập thông tin và bấm Lưu.
 @section('content')
 <form id="frmLoai" name="frmLoai" method="post" action="{{ route('backend.chuyenkho.store') }}">
     {{ csrf_field() }}
-    <div class="form-group">
-        <label for="nv_ma">Nhân viên</label>
-        <select name="nv_ma" class="form-control">
-            @foreach($danhsachnhanvien as $nhanvien)
-                @if(old('nv_ma') == $nhanvien->nv_ma)
-                <option value="{{ $nhanvien->nv_ma }}" selected>{{ $nhanvien->nv_hoTen }}</option>
-                @else
-                <option value="{{ $nhanvien->nv_ma }}">{{ $nhanvien->nv_hoTen }}</option>
-                @endif
-            @endforeach
-        </select>
-    </div>
+    
     <div class="form-group">
         <label for="ck_lydo">Lý do</label>
         <input type="text" class="form-control" id="ck_lydo" name="ck_lydo" placeholder="Nhập lý do" value="{{ old('ck_lydo') }}">
@@ -147,9 +136,7 @@ Thêm mới phiếu chuyển kho. Vui lòng nhập thông tin và bấm Lưu.
         });
         $("#frmLoai").validate({
             rules: {
-                nv_ma: {
-                    required: true,
-                },
+                
                 ck_lydo: {
                     required: true,
                     minlength: 3,
@@ -166,9 +153,7 @@ Thêm mới phiếu chuyển kho. Vui lòng nhập thông tin và bấm Lưu.
                 },
             },
             messages: {
-                nv_ma: {
-                    required: "Vui lòng chọn nhân viên",
-                },
+                
                 ck_lydo: {
                     required: "Vui lòng nhập lý do xuất kho",
                     minlength: "Lý do phải có ít nhất 3 ký tự",

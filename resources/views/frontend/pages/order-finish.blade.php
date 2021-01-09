@@ -13,7 +13,7 @@ Giới thiệu Shop Hoa tươi - Sunshine
 {{-- Thay thế nội dung vào Placeholder `main-content` của view `frontend.layouts.master` --}}
 @section('main-content')
 <!-- Title page -->
-<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{{ asset('themes/cozastore/images/bg-01.jpg') }}');">
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{{ asset('themes/cozastore/images/background1.jpg') }}');">
     <h2 class="ltext-105 cl0 txt-center">
         Đặt hàng hoàn tất
     </h2>
@@ -31,13 +31,13 @@ Giới thiệu Shop Hoa tươi - Sunshine
                     </h3>
 
                     <p class="stext-113 cl6 p-b-26">
-                        Chúng tôi đã gởi email xác nhận đơn hàng cho Quý khách. Quý khách vui vòng kiểm tra hộp thư.
+                        Chúng tôi đã gởi email xác nhận đơn hàng cho công ty. Quý khách vui vòng nghe điện thoại để xác nhận đơn hàng.
                         Xin cám ơn Quý khách đã tin tưởng sản phẩm của chúng tôi.
                     </p>
 
                     <p class="stext-113 cl6 p-b-26">
                         Nếu cần hỗ trợ, vui lòng gọi đến đường dây nóng của chúng tôi để được hỗ trợ khi cần thiết:<br />
-                        TEL: 0915-659-223
+                        (+84)969930917
                     </p>
                 </div>
             </div>
@@ -45,7 +45,7 @@ Giới thiệu Shop Hoa tươi - Sunshine
             <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
                 <div class="how-bor1 ">
                     <div class="hov-img0">
-                        <img src="{{ asset('themes/cozastore/images/about-01.jpg') }}" alt="IMG">
+                        <img src="{{ asset('img/thankyou.jpg') }}" alt="IMG">
                     </div>
                 </div>
             </div>

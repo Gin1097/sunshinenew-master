@@ -16,18 +16,6 @@ Thêm mới phiếu xuất kho. Vui lòng nhập thông tin và bấm Lưu.
 <form id="frmLoai" name="frmLoai" method="post" action="{{ route('backend.xuatkho.store') }}">
     {{ csrf_field() }}
     <div class="form-group">
-        <label for="nv_ma">Nhân viên</label>
-        <select name="nv_ma" class="form-control">
-            @foreach($danhsachnhanvien as $nhanvien)
-                @if(old('nv_ma') == $nhanvien->nv_ma)
-                <option value="{{ $nhanvien->nv_ma }}" selected>{{ $nhanvien->nv_hoTen }}</option>
-                @else
-                <option value="{{ $nhanvien->nv_ma }}">{{ $nhanvien->nv_hoTen }}</option>
-                @endif
-            @endforeach
-        </select>
-    </div>
-    <div class="form-group">
         <label for="xk_lydo">Lý do</label>
         <input type="text" class="form-control" id="xk_lydo" name="xk_lydo" placeholder="Nhập lý do" value="{{ old('xk_lydo') }}">
     </div>
@@ -85,6 +73,7 @@ Thêm mới phiếu xuất kho. Vui lòng nhập thông tin và bấm Lưu.
         </select>
     </div>
     <div class="form-group">
+
         <label for="sl_ton">Số lượng còn lại trong kho</label>
         <select name="sl_ton" id="sl_ton" class="form-control">
             @foreach($danhsachsanphamkho as $str1)
@@ -92,6 +81,18 @@ Thêm mới phiếu xuất kho. Vui lòng nhập thông tin và bấm Lưu.
                 <option value="{{ $str1->sl_ton }}" selected>{{ $str->sl_ton }}</option>
                 @else
                 <option value="{{ $str1->sl_ton }}">{{ $str->sl_ton }}</option>
+                @endif
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="sl_xuat">Số lượng đã xuất kho</label>
+        <select name="sl_xuat" id="sl_xuat" class="form-control" >
+            @foreach($danhsachsanphamkho as $str1)
+                @if(old('kho_ma') == $str1->kho_ma)
+                <option value="{{ $str1->sl_xuat }}" selected>{{ $str->sl_xuat }}</option>
+                @else
+                <option value="{{ $str1->sl_xuat }}">{{ $str->sl_xuat }}</option>
                 @endif
             @endforeach
         </select>
@@ -135,6 +136,9 @@ Thêm mới phiếu xuất kho. Vui lòng nhập thông tin và bấm Lưu.
             });
             $.get("/admin/sanphamkho1/"+idSanpham, function(data){
                 $("#sl_nhap").html(data);
+            });
+            $.get("/admin/sanphamkho2/"+idSanpham, function(data){
+                $("#sl_xuat").html(data);
             });
         });
         $("#frmLoai").validate({

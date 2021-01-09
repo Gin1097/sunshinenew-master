@@ -37,13 +37,13 @@ Chỉnh sửa hóa đơn sỉ. Vui lòng nhập thông tin và bấm Lưu.
         <input type="text" class="form-control" id="hds_soTaiKhoan" name="hds_soTaiKhoan" placeholder="Nhập số tài khoản" value="{{  $hds->hds_soTaiKhoan }}">
     </div>
     <div class="form-group">
-        <label for="nv_lapHoaDon">Nhân viên lập hóa đơn</label>
+        <label for="nv_lapHoaDon">Nhân viên thủ trưởng</label>
         <select name="nv_lapHoaDon" class="form-control">
-            @foreach($danhsachnhanvien as $nhanvien)
-                @if(old('nv_lapHoaDon', $nhanvien->nv_lapHoaDon) == $nhanvien->nv_ma)
-                <option value="{{ $nhanvien->nv_ma }}" selected>{{ $nhanvien->nv_hoTen }}</option>
+            @foreach($danhsachnhanvien as $nhanvienlaphoadon)
+                @if(old('nv_lapHoaDon', $hds->nv_lapHoaDon) == $nhanvienlaphoadon->nv_ma)
+                <option value="{{ $nhanvienlaphoadon->nv_ma }}" selected>{{ $nhanvienlaphoadon->nv_hoTen }}</option>
                 @else
-                <option value="{{ $nhanvien->nv_ma }}">{{ $nhanvien->nv_hoTen }}</option>
+                <option value="{{ $nhanvienlaphoadon->nv_ma }}">{{ $nhanvienlaphoadon->nv_hoTen }}</option>
                 @endif
             @endforeach
         </select>

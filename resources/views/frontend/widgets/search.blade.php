@@ -15,7 +15,7 @@ Shop Hoa tươi - Sunshine
 
 
 <!-- Slider -->
-@include('frontend.widgets.homepage-slider')
+<!-- @include('frontend.widgets.homepage-slider') -->
 <!-- Banner -->
 
 <!-- Product -->

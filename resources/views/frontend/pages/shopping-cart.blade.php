@@ -56,10 +56,6 @@ Giỏ hàng Shop Hoa tươi - F-Shop
                         </li>
                 </div>
                 <div class="form-group">
-                    <label for="dh_thoiGianNhanHang">Thời gian nhận hàng:</label>
-                    <input type="text" class="form-control" id="dh_thoiGianNhanHang" name="dh_thoiGianNhanHang" ng-model="dh_thoiGianNhanHang" ng-required=true>
-                </div>
-                <div class="form-group">
                     <label for="dh_nguoiNhan">Người nhận:</label>
                     <input type="text" class="form-control" id="dh_nguoiNhan" name="dh_nguoiNhan" ng-model="dh_nguoiNhan" ng-minlength="6" ng-maxlength="100" ng-required=true>
                 </div>
@@ -129,7 +125,6 @@ Giỏ hàng Shop Hoa tươi - F-Shop
                 // lấy data của Form
 
                 var dataInputOrderForm_DatHang = {
-                    "dh_thoiGianNhanHang": $scope.orderForm.dh_thoiGianNhanHang.$viewValue,
                     "dh_nguoiNhan": $scope.orderForm.dh_nguoiNhan.$viewValue,
                     "dh_diaChi": $scope.orderForm.dh_diaChi.$viewValue,
                     "dh_dienThoai": $scope.orderForm.dh_dienThoai.$viewValue,

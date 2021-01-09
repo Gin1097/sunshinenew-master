@@ -54,10 +54,10 @@
         <table border="0" align="center">
             <tr>
                 <td class="companyInfo">
-                    Công ty Nền tảng<br />
-                    http://sunshine.com/<br />
-                    (0292)3.888.999 # 01.222.888.999<br />
-                    <img src="{{ asset('img/logo-nentang.jpg') }}" class="companyImg" />
+                Công ty TNHH F-Shop<br />
+                http://f-shop.com/<br />
+                (0292)3.888.999 # 01.222.888.999<br />
+                <img src="{{ asset('img/f-shop.png') }}" class="logo" />
                 </td>
             </tr>
         </table>

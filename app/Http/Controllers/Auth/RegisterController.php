@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'nv_dienThoai' => $data['nv_dienThoai'],
             'nv_taoMoi' => Carbon::now(), // Lấy ngày giờ hiện tại (sử dụng Carbon)
             'nv_capNhat' => Carbon::now(), // Lấy ngày giờ hiện tại (sử dụng Carbon)
-            'nv_trangThai' => 1, // Mặc định là 2-Khả dụng
+            'nv_trangThai' => 2, // Mặc định là 2-Khả dụng
             'q_ma' => 4, // Mặc định là 4-Kế toán
         ]);
 

@@ -299,7 +299,7 @@ class SanPhamController extends Controller
 
     public function print()
 {
-    $ds_sanpham = Sanpham::all();
+    $ds_sanpham = Sanpham::where('sp_trangThai', 2)->get();
     $ds_loai    = Loai::all();
     return view('backend.sanpham.print')
         ->with('danhsachsanpham', $ds_sanpham)
@@ -311,7 +311,7 @@ class SanPhamController extends Controller
      */
     public function pdf() 
     {
-        $ds_sanpham = Sanpham::all();
+        $ds_sanpham = Sanpham::where('sp_trangThai', 2)->get();
         $ds_loai    = Loai::all();
         $data = [
             'danhsachsanpham' => $ds_sanpham,

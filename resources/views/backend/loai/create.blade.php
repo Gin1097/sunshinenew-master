@@ -16,9 +16,14 @@ Thêm mới loại. Vui lòng nhập thông tin và bấm Lưu.
 <form id="frmLoai" name="frmLoai" method="post" action="{{ route('backend.loai.store') }}">
     {{ csrf_field() }}
     <div class="form-group">
-        <label for="cd_ten">Tên loại</label>
+        <label for="l_ten">Tên loại</label>
         <input type="text" class="form-control" id="l_ten" name="l_ten" aria-describedby="l_tenHelp" placeholder="Nhập tên loại" value="{{ old('l_ten') }}">
         <small id="l_tenHelp" class="form-text text-muted">Nhập tên loại. Giới hạn trong 50 ký tự.</small>
+    </div>
+    <div class="form-group">
+        <label for="l_moTa">Mô tả</label>
+        <input type="text" class="form-control" id="l_moTa" name="l_moTa" aria-describedby="l_tenHelp" placeholder="Nhập mô tả thể loại" value="{{ old('l_moTa') }}">
+        <small id="l_tenHelp" class="form-text text-muted">Nhập mô tả thể loại. Giới hạn trong 255 ký tự.</small>
     </div>
     <button class="btn btn-primary">Lưu</button>
 </form>
@@ -33,6 +38,11 @@ Thêm mới loại. Vui lòng nhập thông tin và bấm Lưu.
                     required: true,
                     minlength: 3,
                     maxlength: 50
+                },
+                l_moTa: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 255
                 }
             },
             messages: {
@@ -40,6 +50,11 @@ Thêm mới loại. Vui lòng nhập thông tin và bấm Lưu.
                     required: "Vui lòng nhập tên Loại",
                     minlength: "Tên Loại phải có ít nhất 3 ký tự",
                     maxlength: "Tên Loại không được vượt quá 50 ký tự"
+                },
+                l_moTa: {
+                    required: "Vui lòng nhập mô tả thể Loại",
+                    minlength: "Mô tả thể loại phải có ít nhất 5 ký tự",
+                    maxlength: "Mô tả thể loại không được vượt quá 255 ký tự"
                 },
             },
             errorElement: "em",

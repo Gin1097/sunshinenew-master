@@ -9,26 +9,21 @@
                 </div>
                 @if(Auth::check())
                     <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            Help & FAQs
-                        </a>
-
                         <a href="{{ route('logout') }}" class="flex-c-m trans-04 p-lr-25"
                         onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">Sign out
-                        
+                            document.getElementById('logout-form').submit();">Sign out
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
-                        </form>
+                            </form>
 
-                        <a href="{{ route('app.setLocale', ['locale' => 'en']) }}" class="flex-c-m trans-04 p-lr-25">
+                        <!-- <a href="{{ route('app.setLocale', ['locale' => 'en']) }}" class="flex-c-m trans-04 p-lr-25">
                             EN
                         </a>
 
                         <a href="{{ route('app.setLocale', ['locale' => 'vi']) }}" class="flex-c-m trans-04 p-lr-25">
                             VI
-                        </a>
+                        </a> -->
 
                         <a href="{{ route('backend.dashboard') }}" class="flex-c-m trans-04 p-lr-25">
                         {{Auth::user()->nv_taiKhoan}}

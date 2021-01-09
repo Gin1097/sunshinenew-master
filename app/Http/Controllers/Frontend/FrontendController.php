@@ -49,10 +49,10 @@ class FrontendController extends Controller
             ->get();
 
         // Query danh sách Loại
-        $danhsachloai = Loai::all();
+        $danhsachloai = Loai::where('l_trangThai', 2)->get();
 
         // Query danh sách màu
-        $danhsachmau = Mau::all();
+        $danhsachmau = Mau::where('m_trangThai', 2)->get();
 
         // Hiển thị view `frontend.index` với dữ liệu truyền vào
         return view('frontend.index')
@@ -105,10 +105,10 @@ class FrontendController extends Controller
             ->get();
 
         // Query danh sách Loại
-        $danhsachloai = Loai::all();
+        $danhsachloai = Loai::where('l_trangThai', 2)->get();
 
         // Query danh sách màu
-        $danhsachmau = Mau::all();
+        $danhsachmau = Mau::where('m_trangThai', 2)->get();
 
         // Hiển thị view `frontend.index` với dữ liệu truyền vào
         return view('frontend.pages.product')
@@ -168,9 +168,9 @@ class FrontendController extends Controller
             $email_kh = 'quanb1510856@gmail.com';
             // Tạo mới đơn hàng
             $donhang = new Donhang();
-            $donhang->kh_ma = 100;
-            $donhang->dh_thoiGianDatHang = Carbon::now();
-            $donhang->dh_thoiGianNhanHang = $request->donhang['dh_thoiGianNhanHang'];
+            $donhang->kh_ma = 1;
+            $donhang->dh_thoiGianDatHang = Carbon::now('Asia/Ho_Chi_Minh');
+            $donhang->dh_thoiGianNhanHang = Carbon::tomorrow('Asia/Ho_Chi_Minh');
             $donhang->dh_nguoiNhan = $request->donhang['dh_nguoiNhan'];
             $donhang->dh_diaChi = $request->donhang['dh_diaChi'];
             $donhang->dh_dienThoai = $request->donhang['dh_dienThoai'];
@@ -200,7 +200,6 @@ class FrontendController extends Controller
             // dd($dataMail);
             Mail::to('quanb1510856@gmail.com')
                 ->send(new OrderMailer($dataMail));
-                return $dataMail;
             return response()->json(array(
                 'code'  => 200,
                 'message' => 'Tạo đơn hàng thành công!',
@@ -230,7 +229,8 @@ class FrontendController extends Controller
     }
     public function search(Request $req){
         $product = Sanpham::where('sp_ten','like','%'.$req->key.'%')
-                            ->orWhere('sp_giaBan',$req->key)
+                            ->where('sp_trangThai', 2)
+                            ->orWhere('sp_giaBan',$req->key)                            
                             ->get();
         $danhsachsanpham = $this->searchSanPham($req);
                 

@@ -159,7 +159,7 @@ class DonHangController extends Controller
     {
         //
         $donhang = Donhang::find($id);
-        $donhang->dh_ngayGiaoHang = Carbon::now();
+        $donhang->dh_ngayGiaoHang = Carbon::now('Asia/Ho_Chi_Minh');
         $donhang->dh_trangThai = 4;
         $donhang->dh_daThanhToan = 1;
         $donhang->save();

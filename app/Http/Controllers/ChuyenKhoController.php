@@ -12,6 +12,7 @@ use App\Sanphamkho;
 use App\ChitietChuyenkho;
 use Carbon\Carbon;
 use DB;
+use Auth;
 use Session;
 use Validator;
 use App\Http\Requests\ChuyenKhoCreateRequest;
@@ -44,7 +45,7 @@ class ChuyenKhoController extends Controller
         ->select('nv_ma', 'nv_hoTen', 'nv_trangThai')
         ->where('nv_trangThai', 2)
         ->get();
-        $ds_sp = Sanpham::all();
+        $ds_sp = Sanpham::where('sp_trangThai', 2)->get();
         $ds_spk = Sanphamkho::all();
         $ds_kho = DB::table('kho')
         ->select('kho_ma', 'kho_ten', 'kho_trangThai')
@@ -83,7 +84,7 @@ class ChuyenKhoController extends Controller
             $ck = new Chuyenkho();
             $ck->ck_ngay = Carbon::now();
             $ck->ck_lydo = $request->ck_lydo;
-            $ck->nv_ma = $request->nv_ma;
+            $ck->nv_ma = Auth::user()->nv_ma;
             $ck->save();
 
             $ctck = new ChitietChuyenkho();

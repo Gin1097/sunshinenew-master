@@ -13,7 +13,7 @@ Giới thiệu Shop Hoa tươi - F-shop
 {{-- Thay thế nội dung vào Placeholder `main-content` của view `frontend.layouts.master` --}}
 @section('main-content')
 <!-- Title page -->
-<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{{ asset('themes/cozastore/images/bg-01.jpg') }}');">
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{{ asset('themes/cozastore/images/background2.jpg') }}');">
     <h2 class="ltext-105 cl0 txt-center">
         About
     </h2>
@@ -27,32 +27,30 @@ Giới thiệu Shop Hoa tươi - F-shop
             <div class="col-md-7 col-lg-8">
                 <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
                     <h3 class="mtext-111 cl2 p-b-16">
-                        Our Story
+                        Mua sắm online
                     </h3>
 
                     <p class="stext-113 cl6 p-b-26">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat consequat enim, non
-                        auctor massa ultrices non. Morbi sed odio massa. Quisque at vehicula tellus, sed tincidunt
-                        augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                        Maecenas varius egestas diam, eu sodales metus scelerisque congue. Pellentesque habitant morbi
-                        tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas gravida justo eu
-                        arcu egestas convallis. Nullam eu erat bibendum, tempus ipsum eget, dictum enim. Donec non
-                        neque ut enim dapibus tincidunt vitae nec augue. Suspendisse potenti. Proin ut est diam. Donec
-                        condimentum euismod tortor, eget facilisis diam faucibus et. Morbi a tempor elit.
+                    Ngày này trong nhịp sống hối hả của con người thì việc giành thời gian để ra ngoài để mua sắm trở nên là 1 điều quá xa sỉ.. 
+                    Những lo lắng về giao thông không an toàn và hạn chế trong việc mua hàng truyền thống có thể tránh được trong khi mua sắm trực tuyến. 
+                    Với mua sắm trực tuyến(online), bạn cũng không cần phải lo lắng về điều kiện thời tiết. 
+                    Người tiêu dùng và các khách hàng là những tổ chức, công ty,… đang dần chuyển sang mua sắm trực tuyến nhiều hơn nhằm tiết kiệm thời gian
+
+                    
                     </p>
 
                     <p class="stext-113 cl6 p-b-26">
-                        Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam
-                        aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac
-                        orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales
-                        lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel
-                        tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis
-                        ipsum, et maximus enim ligula ac ligula.
+                    Chính vì thế việc mua sắm online càng trở nên quan trọng và cần thiết,chỉ cần 1 cú click chuột thì họ có thể có được sản phẩm mà mình mong muốn.
+                    Việc mua sắm online có nhiều ưu điểm là có thể sở hữu mọi thứ thông qua các cú click chuột chứ không cần phải đến tận nơi để mua hàng. 
+                    Sau khi vào website bán hàng, chọn sản phẩm, chỉ cần đặt hàng (order) người bán sẽ mang sản phẩm đến tận nhà bạn. 
+                    Mua sắm online cho phép mua hàng bất cứ khi nào bạn muốn. Các cửa hang trên mạng không bao giờ đóng cửa, có thể mua sắm 24/24 giờ và 7 ngày trong tuần. 
+                    Mua sắm ở các chợ, trung tâm thương mại hay cửa hàng rất khó để bạn có thể so sánh đặc điểm và giá của sản phẩm với nhau. 
+                    Khi mua hàng online, bạn dễ dàng so sánh và đưa ra lựa chọn sản phẩm phù hợp nhất. Đôi khi bạn gặp phải những người bán hàng khó tính tại một số địa điểm bán hàng. 
+                    Mua sắm online thì khách hàng chẳng phải để ý đến chuyện ấy nữa.
                     </p>
 
                     <p class="stext-113 cl6 p-b-26">
-                        Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us
-                        on (+1) 96 716 6879
+                        
                     </p>
                 </div>
             </div>
@@ -60,49 +58,7 @@ Giới thiệu Shop Hoa tươi - F-shop
             <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
                 <div class="how-bor1 ">
                     <div class="hov-img0">
-                        <img src="{{ asset('themes/cozastore/images/about-01.jpg') }}" alt="IMG">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="order-md-2 col-md-7 col-lg-8 p-b-30">
-                <div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
-                    <h3 class="mtext-111 cl2 p-b-16">
-                        Our Mission
-                    </h3>
-
-                    <p class="stext-113 cl6 p-b-26">
-                        Mauris non lacinia magna. Sed nec lobortis dolor. Vestibulum rhoncus dignissim risus, sed
-                        consectetur erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
-                        turpis egestas. Nullam maximus mauris sit amet odio convallis, in pharetra magna gravida.
-                        Praesent sed nunc fermentum mi molestie tempor. Morbi vitae viverra odio. Pellentesque ac velit
-                        egestas, luctus arcu non, laoreet mauris. Sed in ipsum tempor, consequat odio in, porttitor
-                        ante. Ut mauris ligula, volutpat in sodales in, porta non odio. Pellentesque tempor urna vitae
-                        mi vestibulum, nec venenatis nulla lobortis. Proin at gravida ante. Mauris auctor purus at
-                        lacus maximus euismod. Pellentesque vulputate massa ut nisl hendrerit, eget elementum libero
-                        iaculis.
-                    </p>
-
-                    <div class="bor16 p-l-29 p-b-9 m-t-22">
-                        <p class="stext-114 cl6 p-r-40 p-b-11">
-                            Creativity is just connecting things. When you ask creative people how they did something,
-                            they feel a little guilty because they didn't really do it, they just saw something. It
-                            seemed obvious to them after a while.
-                        </p>
-
-                        <span class="stext-111 cl8">
-                            - Steve Job’s
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
-                <div class="how-bor2">
-                    <div class="hov-img0">
-                        <img src="{{ asset('themes/cozastore/images/about-02.jpg') }}" alt="IMG">
+                        <img src="{{ asset('themes/cozastore/images/card_online.jpg') }}" alt="IMG">
                     </div>
                 </div>
             </div>

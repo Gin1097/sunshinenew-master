@@ -25,7 +25,7 @@ class ChuyenKhoCreateRequest extends FormRequest
     {
         return [
             //
-            'nv_ma' =>'required',
+            
             'ck_lydo'=> 'required|min:3|max:50',
             'sp_ma' => 'required',
             'kho_ma' => 'required',
@@ -36,7 +36,6 @@ class ChuyenKhoCreateRequest extends FormRequest
     public function messages(){
         return [
         //Nhan vien
-        'nv_ma.required' => 'Nhân viên bắt buộc nhập',
         //Ly do
         'ck_lydo.required' => "Vui lòng nhập lý do",
         'ck_lydo.min' => 'Lý do ít nhất 3 ký tự',

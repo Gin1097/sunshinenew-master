@@ -21,6 +21,11 @@ Thêm mới loại. Vui lòng nhập thông tin và bấm Lưu.
         <input type="text" class="form-control" id="l_ten" name="l_ten" aria-describedby="l_tenHelp" placeholder="Nhập tên loại" value="{{  $loai->l_ten }}">
         <small id="l_tenHelp" class="form-text text-muted">Nhập tên loại. Giới hạn trong 50 ký tự.</small>
     </div>
+    <div class="form-group">
+        <label for="l_moTa">Mô tả</label>
+        <input type="text" class="form-control" id="l_moTa" name="l_moTa" aria-describedby="l_tenHelp" placeholder="Nhập tên loại" value="{{  $loai->l_moTa }}">
+        <small id="l_tenHelp" class="form-text text-muted">Nhập mô tả thể loại. Giới hạn trong 50 ký tự.</small>
+    </div>
     <button class="btn btn-primary">Lưu</button>
 </form>
 @endsection

@@ -13,6 +13,7 @@ use App\Sanphamkho;
 use App\ChitietXuatkho;
 use DB;
 use Session;
+use Auth;
 use Validator;
 use App\Http\Requests\XuatKhoCreateRequest;
 
@@ -73,40 +74,48 @@ class XuatKhoController extends Controller
         //
         $sl = $request->xk_soluong;
         $sln = $request->sl_nhap;
-        
         $gb = $request->sp_giaBan;
-        if($sl>0 && $sl<=$sln){
+        $slton = $request->sl_ton;
+        if($slton>0){
+            if($sl>0 && $sl<=$sln){
+                $id = $request->kho_ma;
+                $id1 = $request->sp_ma;
+                
+                DB::table('sanphamkho')->where('kho_ma', $id)
+                ->where('sp_ma', $id1)
+                ->update([
+                    'kho_ma'=>$request->kho_ma,
+                    'sp_ma'=>$request->sp_ma,
+                    'sl_nhap'=>$request->sl_nhap,
+                    'sl_ton'=>$request->sl_ton-$request->xk_soluong ,
+                    'sl_xuat'=>$request->sl_xuat+$request->xk_soluong
+                ]);
 
-            $xk = new Xuatkho();
-            $xk->xk_ngaylap = date('Y-m-d');
-            $xk->xk_diachi = $request->xk_diachi;
-            $xk->xk_lydo = $request->xk_lydo;
-            $xk->xk_tongtien = $gb*$sl;
-            $xk->nv_ma = $request->nv_ma;
-            $xk->save();
-            $id = $request->kho_ma;
-            $id1 = $request->sp_ma;
-            DB::table('sanphamkho')->where('kho_ma', $id)
-            ->where('sp_ma', $id1)
-            ->update([
-                'kho_ma'=>$request->kho_ma,
-                'sp_ma'=>$request->sp_ma,
-                'sl_nhap'=>$request->sl_nhap,
-                'sl_ton'=>$request->sl_ton - $request->xk_soluong ,
-                'sl_xuat'=>$request->xk_soluong
-            ]);
+                $xk = new Xuatkho();
+                $xk->xk_ngaylap = date('Y-m-d');
+                $xk->xk_diachi = $request->xk_diachi;
+                $xk->xk_lydo = $request->xk_lydo;
+                $xk->xk_tongtien = $gb*$sl;
+                $xk->nv_ma = Auth::user()->nv_ma;
+                $xk->save();
+                            
 
-            $ctxk = new ChitietXuatkho();
-            $ctxk->sp_ma = $request->sp_ma;
-            $ctxk->xk_ma = $xk->xk_ma;
-            $ctxk->ctxk_soluong = $request->xk_soluong;
-            $ctxk->save();
+                $ctxk = new ChitietXuatkho();
+                $ctxk->sp_ma = $request->sp_ma;
+                $ctxk->xk_ma = $xk->xk_ma;
+                $ctxk->ctxk_soluong = $request->xk_soluong;
+                $ctxk->save();
 
-            
+                
+            }else{
+                return redirect(route('backend.xuatkho.create'))
+                ->withErrors('Số lượng xuất phải lớn hơn 0 và nhỏ hơn số lượng hiện có')
+                ->withInput();
+            }
         }else{
             return redirect(route('backend.xuatkho.create'))
-            ->withErrors('Số lượng xuất phải lớn hơn 0 và nhỏ hơn số lượng hiện có')
-            ->withInput();
+            ->withErrors('Số lượng sản phẩm hiện có trong kho bằng 0')
+            ->withInput(); 
         }
         
 

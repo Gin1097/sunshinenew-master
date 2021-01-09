@@ -33,55 +33,70 @@ Danh sách các loại đơn hàng có trong Hệ thống. Bạn có thể CRUD!
             <td>{{ $donhang->dh_diaChi }}</td>
             <td>{{ $donhang->dh_dienThoai }}</td>
             <td>
-                @if($donhang->dh_trangThai == 1)
-                <a href="{{ route('backend.donhang.xuly', ['id' => $donhang->dh_ma]) }}" class="btn btn-info">Xác nhận</a>
-                <a href="{{ route('backend.donhang.edit', ['id' => $donhang->dh_ma]) }}" class="btn btn-warning">Sửa</a>
-                @endif            
-                @if($donhang->dh_trangThai == 2)
-                    <form class="d-inline" method="post" action="{{ route('backend.donhang.giao', ['id' => $donhang->dh_ma]) }}">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="PUT" />
-                        <button class="btn btn-success">Giao hàng</button>
+                @can('ketoan')
+                    @if($donhang->dh_trangThai == 1)
+                    <a href="{{ route('backend.donhang.xuly', ['id' => $donhang->dh_ma]) }}" class="btn btn-info">Xác nhận</a>
+                    <a href="{{ route('backend.donhang.edit', ['id' => $donhang->dh_ma]) }}" class="btn btn-warning">Sửa</a>
+                    @endif            
+                    @if($donhang->dh_trangThai == 5)
+                    <form class="d-inline" method="post" action="{{ route('backend.donhang.doi1', ['id' => $donhang->dh_ma]) }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="PUT" />
+                            <button class="btn btn-warning">Đổi</button>
                     </form>
-                @endif
-                @if($donhang->dh_trangThai == 3)
-                    <form class="d-inline" method="post" action="{{ route('backend.donhang.dagiao', ['id' => $donhang->dh_ma]) }}">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="PUT" />
-                        <button class="btn btn-success">Đã giao hàng</button>
-                    </form>
-                    <form class="d-inline" method="post" action="{{ route('backend.donhang.doi', ['id' => $donhang->dh_ma]) }}">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="PUT" />
-                        <button class="btn btn-warning">Đổi</button>
-                    </form>
-                    <form class="d-inline" method="post" action="{{ route('backend.donhang.tra', ['id' => $donhang->dh_ma]) }}">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="PUT" />
-                        <button class="btn btn-warning">Trả</button>
-                    </form>
-                    <form class="d-inline" method="post" action="{{ route('backend.donhang.huy', ['id' => $donhang->dh_ma]) }}">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="PUT" />
-                        <button class="btn btn-danger">Hủy đơn</button>
-                    </form>
-                @endif
-                @if($donhang->dh_trangThai == 4)
-                <a class="btn btn">Hoàn thành&#9989;</a>   
-                @endif
-                @if($donhang->dh_trangThai == 5)
-                <form class="d-inline" method="post" action="{{ route('backend.donhang.doi1', ['id' => $donhang->dh_ma]) }}">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="PUT" />
-                        <button class="btn btn-warning">Đổi</button>
-                </form>
-                @endif
-                @if($donhang->dh_trangThai == 6)
-                <a class="btn btn">Đã hủy&#9940;</a>
-                @endif
-                @if($donhang->dh_trangThai == 7)
-                <a class="btn btn">Trả hàng&#128148;</a>
-                @endif
+                    @endif
+                    @if($donhang->dh_trangThai == 4)
+                    <a class="btn btn">Hoàn thành&#9989;</a>   
+                    @endif
+                    
+                    @if($donhang->dh_trangThai == 6)
+                    <a class="btn btn">Đã hủy&#9940;</a>
+                    @endif
+                    @if($donhang->dh_trangThai == 7)
+                    <a class="btn btn">Trả hàng&#128148;</a>
+                    @endif
+                    @endcan
+                @can('giaohang')
+                    @if($donhang->dh_trangThai == 2)
+                        <form class="d-inline" method="post" action="{{ route('backend.donhang.giao', ['id' => $donhang->dh_ma]) }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="PUT" />
+                            <button class="btn btn-success">Giao hàng</button>
+                        </form>
+                    @endif
+                    @if($donhang->dh_trangThai == 3)
+                        <form class="d-inline" method="post" action="{{ route('backend.donhang.dagiao', ['id' => $donhang->dh_ma]) }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="PUT" />
+                            <button class="btn btn-success">Đã giao hàng</button>
+                        </form>
+                        <form class="d-inline" method="post" action="{{ route('backend.donhang.doi', ['id' => $donhang->dh_ma]) }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="PUT" />
+                            <button class="btn btn-warning">Đổi</button>
+                        </form>
+                        <form class="d-inline" method="post" action="{{ route('backend.donhang.tra', ['id' => $donhang->dh_ma]) }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="PUT" />
+                            <button class="btn btn-warning">Trả</button>
+                        </form>
+                        <form class="d-inline" method="post" action="{{ route('backend.donhang.huy', ['id' => $donhang->dh_ma]) }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="PUT" />
+                            <button class="btn btn-danger">Hủy đơn</button>
+                        </form>
+                    @endif
+                    @if($donhang->dh_trangThai == 4)
+                    <a class="btn btn">Hoàn thành&#9989;</a>   
+                    @endif
+                    
+                    @if($donhang->dh_trangThai == 6)
+                    <a class="btn btn">Đã hủy&#9940;</a>
+                    @endif
+                    @if($donhang->dh_trangThai == 7)
+                    <a class="btn btn">Trả hàng&#128148;</a>
+                    @endif
+                @endcan
             </td>
         </tr>
         @endforeach

@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        App\Nhanvien::class => App\Nhanvien\Nhanvienpolicy::class,
     ];
 
     /**
@@ -26,8 +26,23 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('admin', function($user){
+            return $user->q_ma === 2;
+        });
+        Gate::define('giamdoc', function($user){
+            return $user->q_ma === 1;
+        });
+        Gate::define('ketoan', function($user){
+            return $user->q_ma === 4;
+        });
+        Gate::define('quanlykho', function($user){
+            return $user->q_ma === 3;
+        });
+        Gate::define('giaohang', function($user){
+            return $user->q_ma === 6;
+        });
         // Sử dụng CustomUserProvider để xác thực tài khoản
-        $this->app->auth->provider('custom', function ($app, array $config) {
+            $this->app->auth->provider('custom', function ($app, array $config) {
             return new CustomUserProvider($app['hash'], $config['model']);
         });
     }

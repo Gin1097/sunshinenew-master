@@ -49,7 +49,8 @@ class LoaiController extends Controller
 
         // // Kiểm tra ràng buộc dữ liệu (validation)
         $validator = Validator::make($request->all(), [
-            'l_ten' => 'required|min:3|max:50|unique:loai', //tên table
+            'l_ten' => 'required|min:3|max:50|unique:loai',
+            'l_moTa' => 'required|min:5|max:255' //tên table
         ]);
 
         // // Nếu kiểm tra ràng buộc dữ liệu thất bại -> tức là dữ liệu không hợp lệ
@@ -64,6 +65,7 @@ class LoaiController extends Controller
 
         $l = new Loai();
         $l->l_ten = $request->input('l_ten');
+        $l->l_moTa = $request->input('l_moTa');
         $l->l_trangThai = 2;
         $l->save();
 
@@ -107,6 +109,7 @@ class LoaiController extends Controller
     {
         $loai = Loai::find($id);
         $loai->l_ten = $request->input('l_ten');
+        $loai->l_moTa = $request->input('l_moTa');
         $loai->save();
 
         Session::flash('alert-warning', 'Cập nhật thành công ^^~!!!');

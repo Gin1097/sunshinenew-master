@@ -13,7 +13,7 @@ Danh sách các loại quyền có trong Hệ thống. Bạn có thể CRUD!
 @endsection
 
 @section('content')
-<a href="{{ route('backend.thanhtoan.create') }}" class="btn btn-primary">Thêm mới quyền</a>
+<a href="{{ route('backend.quyen.create') }}" class="btn btn-primary">Thêm mới quyền</a>
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
